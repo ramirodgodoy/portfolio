@@ -1,0 +1,1564 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ramiro D. Godoy | Comunicación estratégica, innovación e IA aplicada</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Source Sans 3', 'sans-serif'],
+                        serif: ['Libre Baskerville', 'serif'],
+                    },
+                    colors: {
+                        editorial: {
+                            bg: '#F4F1EA',
+                            surface: '#FFFFFF',
+                            ink: '#0F172A',
+                            muted: '#334155',
+                            border: '#CBD5E1',
+                        },
+                        cobalt: {
+                            900: '#0F172A',
+                            800: '#1E3A8A',
+                            700: '#1D4ED8',
+                            100: '#DBEAFE',
+                            50: '#EFF6FF',
+                        },
+                        emerald: {
+                            700: '#047857',
+                            600: '#059669',
+                            100: '#D1FAE5',
+                            50: '#ECFDF5',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #F4F1EA;
+            color: #0F172A;
+            font-family: 'Source Sans 3', sans-serif;
+        }
+        h1, h2, h3, .font-serif {
+            font-family: 'Libre Baskerville', serif;
+        }
+        .editorial-card {
+            background-color: rgba(255, 255, 255, 0.96);
+            border: 1px solid #CBD5E1;
+            box-shadow: 0 6px 20px -6px rgba(15, 23, 42, 0.06);
+            transition: all 0.25s ease;
+        }
+        .editorial-card:hover {
+            border-color: #1D4ED8;
+            transform: translateY(-3px);
+            box-shadow: 0 18px 35px -10px rgba(30, 58, 138, 0.14);
+        }
+        .filter-tab.active {
+            background-color: #1E3A8A;
+            color: #FFFFFF;
+            border-color: #1E3A8A;
+        }
+        .case-item.hidden-card {
+            display: none;
+        }
+        @keyframes modalFadeIn {
+            from { opacity: 0; transform: scale(0.97) translateY(8px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+        .modal-animate {
+            animation: modalFadeIn 0.22s ease-out forwards;
+        }
+
+        /* Texturas y fondos con presencia real */
+        .hero-canvas {
+            background:
+                radial-gradient(circle at 85% 22%, rgba(29, 78, 216, 0.14) 0%, transparent 45%),
+                radial-gradient(circle at 12% 78%, rgba(5, 150, 105, 0.11) 0%, transparent 42%),
+                linear-gradient(135deg, #F6F4EE 0%, #EBF1FA 52%, #EDF6F2 100%);
+        }
+        .texture-grid {
+            background-image:
+                linear-gradient(to right, rgba(30, 58, 138, 0.06) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(30, 58, 138, 0.06) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+        .texture-dots {
+            background-color: #EAE6DC;
+            background-image:
+                radial-gradient(rgba(30, 58, 138, 0.16) 1.25px, transparent 1.25px),
+                radial-gradient(rgba(4, 120, 87, 0.12) 1.25px, transparent 1.25px);
+            background-size: 32px 32px;
+            background-position: 0 0, 16px 16px;
+        }
+        .section-warm-slate {
+            background:
+                radial-gradient(circle at 15% 15%, rgba(30, 58, 138, 0.08) 0%, transparent 40%),
+                radial-gradient(circle at 88% 85%, rgba(4, 120, 87, 0.09) 0%, transparent 45%),
+                #F8FAFC;
+        }
+        .section-paper {
+            background:
+                linear-gradient(180deg, #EFECE4 0%, #E6ECF5 100%);
+        }
+        .lang-active {
+            color: #1E3A8A;
+            font-weight: 700;
+            text-decoration: underline;
+            text-underline-offset: 4px;
+            text-decoration-thickness: 2px;
+        }
+        .lang-inactive {
+            color: #64748B;
+            font-weight: 500;
+        }
+        .lang-inactive:hover {
+            color: #0F172A;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-cobalt-800 selection:text-white">
+
+    <!-- Navbar -->
+    <nav class="fixed top-0 w-full z-40 bg-white/90 backdrop-blur-md border-b border-editorial-border shadow-2xs">
+        <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+            <a href="#" class="font-serif font-bold text-lg md:text-xl tracking-tight text-editorial-ink">
+                Ramiro D. <span class="text-cobalt-800">Godoy</span>
+            </a>
+
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex items-center space-x-7 text-base font-medium text-editorial-muted">
+                <a href="#perfil" data-i18n="nav_perfil" class="hover:text-cobalt-800 transition">Perfil</a>
+                <a href="#pilares" data-i18n="nav_pilares" class="hover:text-cobalt-800 transition">Pilares</a>
+                <a href="#casos" data-i18n="nav_casos" class="hover:text-cobalt-800 transition">Casos de estudio</a>
+                <a href="#trayectoria" data-i18n="nav_trayectoria" class="hover:text-cobalt-800 transition">Trayectoria</a>
+                <a href="#credenciales" data-i18n="nav_credenciales" class="hover:text-cobalt-800 transition">Credenciales</a>
+                <a href="#contacto" data-i18n="nav_contacto" class="px-4 py-1.5 rounded-lg bg-cobalt-800 text-white font-semibold hover:bg-cobalt-700 transition text-sm">
+                    Contacto
+                </a>
+
+                <!-- Selector de idioma Desktop -->
+                <div class="flex items-center gap-1.5 pl-4 border-l border-editorial-border text-xs tracking-wider" aria-label="Selector de idioma">
+                    <button type="button" id="btn-lang-es" onclick="setLanguage('es')" class="lang-active cursor-pointer transition">ES</button>
+                    <span class="text-slate-300">|</span>
+                    <button type="button" id="btn-lang-en" onclick="setLanguage('en')" class="lang-inactive cursor-pointer transition">EN</button>
+                </div>
+            </div>
+
+            <!-- Mobile Controls -->
+            <div class="flex items-center gap-3 md:hidden">
+                <!-- Selector de idioma Mobile -->
+                <div class="flex items-center gap-1.5 text-xs tracking-wider" aria-label="Selector de idioma">
+                    <button type="button" id="btn-lang-es-mobile" onclick="setLanguage('es')" class="lang-active cursor-pointer transition">ES</button>
+                    <span class="text-slate-300">|</span>
+                    <button type="button" id="btn-lang-en-mobile" onclick="setLanguage('en')" class="lang-inactive cursor-pointer transition">EN</button>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" aria-label="Abrir menú" class="p-2 rounded-lg text-editorial-ink hover:bg-slate-200/60 transition">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-editorial-border px-6 py-4 space-y-3">
+            <a href="#perfil" data-i18n="nav_perfil" onclick="toggleMobileMenu()" class="block text-base font-medium text-editorial-ink hover:text-cobalt-800">Perfil</a>
+            <a href="#pilares" data-i18n="nav_pilares" onclick="toggleMobileMenu()" class="block text-base font-medium text-editorial-ink hover:text-cobalt-800">Pilares</a>
+            <a href="#casos" data-i18n="nav_casos" onclick="toggleMobileMenu()" class="block text-base font-medium text-editorial-ink hover:text-cobalt-800">Casos de estudio</a>
+            <a href="#trayectoria" data-i18n="nav_trayectoria" onclick="toggleMobileMenu()" class="block text-base font-medium text-editorial-ink hover:text-cobalt-800">Trayectoria</a>
+            <a href="#credenciales" data-i18n="nav_credenciales" onclick="toggleMobileMenu()" class="block text-base font-medium text-editorial-ink hover:text-cobalt-800">Credenciales</a>
+            <a href="#contacto" data-i18n="nav_contacto" onclick="toggleMobileMenu()" class="inline-block px-4 py-2 rounded-lg bg-cobalt-800 text-white font-semibold text-sm">Contacto</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section con degradado atmosférico, textura de grilla y composición gráfica a la derecha -->
+    <header id="perfil" class="relative overflow-hidden hero-canvas pt-32 pb-20 md:pt-40 md:pb-24 border-b border-editorial-border">
+        <!-- Capa de textura reticular -->
+        <div aria-hidden="true" class="pointer-events-none absolute inset-0 texture-grid"></div>
+
+        <!-- Malla vectorial grande en el fondo derecho -->
+        <svg aria-hidden="true" class="pointer-events-none absolute -top-6 -right-16 w-[680px] md:w-[860px] h-auto text-cobalt-800 opacity-20 select-none" viewBox="0 0 800 600" fill="none">
+            <circle cx="540" cy="250" r="240" fill="url(#heroOrb)" />
+            <defs>
+                <radialGradient id="heroOrb" cx="50%" cy="50%" r="50%">
+                    <stop offset="0%" stop-color="#1D4ED8" stop-opacity="0.22"/>
+                    <stop offset="100%" stop-color="#1D4ED8" stop-opacity="0"/>
+                </radialGradient>
+            </defs>
+            <g stroke="currentColor">
+                <path d="M180 90 L370 130 L540 60 L720 150 L770 320 L620 450 L420 400 L260 280 Z" stroke-width="1.5"/>
+                <path d="M370 130 L420 400 M540 60 L620 450 M180 90 L260 280 M370 130 L620 450 M540 60 L260 280" stroke-width="1.1" stroke-dasharray="5 5"/>
+                <path d="M475 235 L720 150 M475 235 L770 320 M475 235 L420 400 M475 235 L260 280" stroke-width="1.5"/>
+                <circle cx="560" cy="240" r="195" stroke-width="1" stroke-dasharray="7 7"/>
+                <circle cx="560" cy="240" r="295" stroke-width="0.9"/>
+                <circle cx="180" cy="90" r="5" fill="currentColor"/>
+                <circle cx="370" cy="130" r="7" fill="currentColor"/>
+                <circle cx="540" cy="60" r="6" fill="currentColor"/>
+                <circle cx="720" cy="150" r="7.5" fill="currentColor"/>
+                <circle cx="770" cy="320" r="5" fill="currentColor"/>
+                <circle cx="620" cy="450" r="7" fill="currentColor"/>
+                <circle cx="420" cy="400" r="6" fill="currentColor"/>
+                <circle cx="260" cy="280" r="6.5" fill="currentColor"/>
+                <circle cx="475" cy="235" r="9.5" fill="#047857"/>
+            </g>
+        </svg>
+
+        <div class="relative z-10 max-w-6xl mx-auto px-6">
+            <div class="grid lg:grid-cols-12 gap-10 items-center">
+                <div class="lg:col-span-8">
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/95 shadow-2xs border border-blue-200 text-cobalt-800 text-xs font-bold tracking-wider uppercase mb-6">
+                        <span class="w-2 h-2 rounded-full bg-emerald-600"></span>
+                        <span data-i18n="hero_badge">Comunicación estratégica · Adopción de IA · Innovación de procesos</span>
+                    </div>
+
+                    <h1 data-i18n="hero_title" class="font-serif text-3xl md:text-5xl font-bold tracking-tight text-editorial-ink leading-[1.2] mb-6">
+                        El puente para transformar <span class="text-cobalt-800 italic">información en conocimiento</span> y el conocimiento en impacto.
+                    </h1>
+
+                    <p data-i18n="hero_desc" class="text-editorial-muted text-lg md:text-xl leading-relaxed mb-9">
+                        Licenciado en Ciencias de la Comunicación Social en la <strong class="text-editorial-ink font-semibold">Universidad de Buenos Aires (UBA)</strong> con más de 10 años de trayectoria en entornos corporativos globales y multiculturales. Especialista en comunicación estratégica, gestión del conocimiento, benchmarking e innovación aplicada. Actúo como el puente entre la tecnología, los procesos y las personas para transformar información compleja en conocimiento claro, comunidades activas e impacto medible.
+                    </p>
+
+                    <div class="flex flex-wrap gap-4">
+                        <a href="#casos" data-i18n="hero_cta1" class="px-6 py-3.5 rounded-xl bg-cobalt-800 text-white font-semibold text-base hover:bg-cobalt-700 transition shadow-md">
+                            Explorar casos de estudio
+                        </a>
+                        <a href="#contacto" data-i18n="hero_cta2" class="px-6 py-3.5 rounded-xl bg-white text-editorial-ink font-semibold text-base border border-editorial-border hover:border-cobalt-800 transition shadow-2xs">
+                            Conversar sobre un proyecto
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Bloque visual lateral derecho que equilibra el espacio en pantallas medianas y grandes -->
+                <div class="hidden lg:block lg:col-span-4">
+                    <div class="bg-white/85 backdrop-blur-md border border-blue-200/80 rounded-2xl p-6 shadow-lg">
+                        <div class="flex items-center justify-between border-b border-slate-200 pb-3.5 mb-4">
+                            <span data-i18n="arch_title" class="text-xs font-bold uppercase tracking-wider text-cobalt-800">Arquitectura de valor</span>
+                            <span class="inline-flex gap-1.5">
+                                <span class="w-2.5 h-2.5 rounded-full bg-cobalt-800"></span>
+                                <span class="w-2.5 h-2.5 rounded-full bg-emerald-600"></span>
+                                <span class="w-2.5 h-2.5 rounded-full bg-slate-300"></span>
+                            </span>
+                        </div>
+                        <div class="space-y-3.5">
+                            <div class="p-3.5 rounded-xl bg-cobalt-50/90 border border-blue-100">
+                                <div data-i18n="arch_s1_title" class="text-xs font-bold text-cobalt-800 uppercase">01 · Información & Datos</div>
+                                <div data-i18n="arch_s1_desc" class="text-sm text-editorial-muted mt-0.5">Curaduría, benchmarking y gobernanza de fuentes complejas.</div>
+                            </div>
+                            <div class="flex justify-center text-cobalt-800">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/></svg>
+                            </div>
+                            <div class="p-3.5 rounded-xl bg-emerald-50/90 border border-emerald-100">
+                                <div data-i18n="arch_s2_title" class="text-xs font-bold text-emerald-700 uppercase">02 · Conocimiento & IA</div>
+                                <div data-i18n="arch_s2_desc" class="text-sm text-editorial-muted mt-0.5">Narrativa clara, enablement y procesos optimizados.</div>
+                            </div>
+                            <div class="flex justify-center text-emerald-700">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/></svg>
+                            </div>
+                            <div class="p-3.5 rounded-xl bg-slate-900 text-white">
+                                <div data-i18n="arch_s3_title" class="text-xs font-bold text-blue-300 uppercase">03 · Impacto Medible</div>
+                                <div data-i18n="arch_s3_desc" class="text-sm text-slate-200 mt-0.5">Adopción real, eficiencia operativa y comunidades activas.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Key Metrics Strip en tarjetas con fondo sólido -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mt-14 pt-10 border-t border-slate-300/80">
+                <div class="bg-white/90 backdrop-blur-xs border border-slate-200/90 rounded-2xl p-5 shadow-2xs">
+                    <div data-i18n="m1_val" class="font-serif text-3xl md:text-4xl font-bold text-cobalt-800">+10 años</div>
+                    <div data-i18n="m1_lbl" class="text-sm text-editorial-muted mt-1.5 leading-snug">Trayectoria global en comunicación, contenido y operaciones</div>
+                </div>
+                <div class="bg-white/90 backdrop-blur-xs border border-slate-200/90 rounded-2xl p-5 shadow-2xs">
+                    <div data-i18n="m2_val" class="font-serif text-3xl md:text-4xl font-bold text-editorial-ink">5 países</div>
+                    <div data-i18n="m2_lbl" class="text-sm text-editorial-muted mt-1.5 leading-snug">Liderazgo de adopción de IA y cuentas clave (+50 personas)</div>
+                </div>
+                <div class="bg-white/90 backdrop-blur-xs border border-slate-200/90 rounded-2xl p-5 shadow-2xs">
+                    <div class="font-serif text-3xl md:text-4xl font-bold text-emerald-700">+30%</div>
+                    <div data-i18n="m3_lbl" class="text-sm text-editorial-muted mt-1.5 leading-snug">Incremento de engagement en comunidad B2B (+2.000 prof.)</div>
+                </div>
+                <div class="bg-white/90 backdrop-blur-xs border border-slate-200/90 rounded-2xl p-5 shadow-2xs">
+                    <div class="font-serif text-3xl md:text-4xl font-bold text-editorial-ink">~40M</div>
+                    <div data-i18n="m4_lbl" class="text-sm text-editorial-muted mt-1.5 leading-snug">Activos gestionados con estándar de calidad QA >95%</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Pilares / Propuesta de valor con fondo cálido-azulado y ondas topográficas visibles -->
+    <section id="pilares" class="relative overflow-hidden py-20 section-warm-slate border-b border-editorial-border">
+        <!-- Ondas topográficas de alto contraste controlado -->
+        <svg aria-hidden="true" class="pointer-events-none absolute -bottom-8 -left-12 w-[780px] h-auto text-emerald-700 opacity-15 select-none" viewBox="0 0 700 360" fill="none">
+            <path d="M-40 320 C 120 210, 260 350, 440 220 C 560 130, 640 160, 740 80" stroke="currentColor" stroke-width="2"/>
+            <path d="M-40 285 C 120 175, 260 315, 440 185 C 560 95, 640 125, 740 45" stroke="currentColor" stroke-width="1.6"/>
+            <path d="M-40 250 C 120 140, 260 280, 440 150 C 560 60, 640 90, 740 10" stroke="currentColor" stroke-width="1.3"/>
+            <path d="M-40 215 C 120 105, 260 245, 440 115 C 560 25, 640 55, 740 -25" stroke="currentColor" stroke-width="1"/>
+            <path d="M-40 355 C 120 245, 260 385, 440 255 C 560 165, 640 195, 740 115" stroke="#1E3A8A" stroke-width="1.6"/>
+        </svg>
+
+        <!-- Constelación superior derecha -->
+        <svg aria-hidden="true" class="pointer-events-none absolute top-6 right-0 w-[420px] h-auto text-cobalt-800 opacity-15 select-none" viewBox="0 0 420 260" fill="none">
+            <path d="M90 30 L230 80 L380 40 L340 180 L190 160 Z" stroke="currentColor" stroke-width="1.4"/>
+            <circle cx="90" cy="30" r="4.5" fill="currentColor"/>
+            <circle cx="230" cy="80" r="6" fill="#047857"/>
+            <circle cx="380" cy="40" r="4.5" fill="currentColor"/>
+            <circle cx="340" cy="180" r="5" fill="currentColor"/>
+            <circle cx="190" cy="160" r="5" fill="currentColor"/>
+        </svg>
+
+        <div class="relative z-10 max-w-6xl mx-auto px-6">
+            <div class="max-w-2xl mb-14">
+                <span data-i18n="pil_kicker" class="inline-block px-3 py-1 rounded-md bg-emerald-100/80 text-emerald-700 text-xs font-bold uppercase tracking-widest">Propuesta de valor</span>
+                <h2 data-i18n="pil_title" class="font-serif text-2xl md:text-4xl font-bold text-editorial-ink mt-3 leading-tight">
+                    Donde la estrategia comunicacional se encuentra con la tecnología
+                </h2>
+            </div>
+
+            <div class="flex flex-wrap justify-center gap-6">
+                <!-- Pilar 1 -->
+                <div class="w-full md:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)] p-6 rounded-2xl bg-white border border-slate-200 border-t-4 border-t-cobalt-800 shadow-sm">
+                    <div class="w-11 h-11 rounded-xl bg-cobalt-50 text-cobalt-800 flex items-center justify-center mb-5">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                    </div>
+                    <h3 data-i18n="p1_title" class="font-serif text-base font-bold text-editorial-ink mb-2">Adopción de IA y enablement</h3>
+                    <p data-i18n="p1_desc" class="text-base text-editorial-muted leading-relaxed">
+                        Diseño de programas de activación, guías prácticas y gestión del cambio para traducir herramientas de IA generativa en hábitos operativos cotidianos.
+                    </p>
+                </div>
+
+                <!-- Pilar 2 -->
+                <div class="w-full md:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)] p-6 rounded-2xl bg-white border border-slate-200 border-t-4 border-t-emerald-600 shadow-sm">
+                    <div class="w-11 h-11 rounded-xl bg-emerald-50 text-emerald-700 flex items-center justify-center mb-5">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+                    </div>
+                    <h3 data-i18n="p2_title" class="font-serif text-base font-bold text-editorial-ink mb-2">Innovación de procesos</h3>
+                    <p data-i18n="p2_desc" class="text-base text-editorial-muted leading-relaxed">
+                        Diagnóstico de cuellos de botella (Lean Six Sigma), automatización de reportes ejecutivos, estandarización de flujos y seguimiento de KPIs.
+                    </p>
+                </div>
+
+                <!-- Pilar 3 -->
+                <div class="w-full md:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)] p-6 rounded-2xl bg-white border border-slate-200 border-t-4 border-t-cobalt-800 shadow-sm">
+                    <div class="w-11 h-11 rounded-xl bg-cobalt-50 text-cobalt-800 flex items-center justify-center mb-5">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
+                    </div>
+                    <h3 data-i18n="p3_title" class="font-serif text-base font-bold text-editorial-ink mb-2">Estrategias de publicación y contenido</h3>
+                    <p data-i18n="p3_desc" class="text-base text-editorial-muted leading-relaxed">
+                        Planificación editorial, redacción estratégica, curaduría multicanal y calendarización de entregables globales, desarrollados con fluidez tanto en <strong class="text-editorial-ink font-semibold">español como en inglés</strong>.
+                    </p>
+                </div>
+
+                <!-- Pilar 4 -->
+                <div class="w-full md:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)] p-6 rounded-2xl bg-white border border-slate-200 border-t-4 border-t-emerald-600 shadow-sm">
+                    <div class="w-11 h-11 rounded-xl bg-emerald-50 text-emerald-700 flex items-center justify-center mb-5">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                    </div>
+                    <h3 data-i18n="p4_title" class="font-serif text-base font-bold text-editorial-ink mb-2">Comunicación y comunidades</h3>
+                    <p data-i18n="p4_desc" class="text-base text-editorial-muted leading-relaxed">
+                        Storytelling ejecutivo, gestión de cuentas clave, dirección de webinars internacionales y dinamización de comunidades B2B activas.
+                    </p>
+                </div>
+
+                <!-- Pilar 5 -->
+                <div class="w-full md:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)] p-6 rounded-2xl bg-white border border-slate-200 border-t-4 border-t-cobalt-800 shadow-sm">
+                    <div class="w-11 h-11 rounded-xl bg-cobalt-50 text-cobalt-800 flex items-center justify-center mb-5">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+                    </div>
+                    <h3 data-i18n="p5_title" class="font-serif text-base font-bold text-editorial-ink mb-2">Benchmarking y calidad de datos</h3>
+                    <p data-i18n="p5_desc" class="text-base text-editorial-muted leading-relaxed">
+                        Rastreo metodológico de fuentes, matrices de análisis comparativo, arquitectura de información y gobernanza de bases de datos masivas.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Casos de estudio sobre textura punteada cálida + mallas geométricas -->
+    <section id="casos" class="relative overflow-hidden py-24 texture-dots border-b border-editorial-border">
+        <!-- Malla geométrica izquierda -->
+        <svg aria-hidden="true" class="pointer-events-none absolute top-10 -left-8 w-[480px] h-auto text-cobalt-800 opacity-15 select-none" viewBox="0 0 420 420" fill="none">
+            <path d="M-20 40 L140 90 L90 230 L-30 190 Z" stroke="currentColor" stroke-width="1.6"/>
+            <path d="M140 90 L280 50 L240 200 L90 230" stroke="currentColor" stroke-width="1.3"/>
+            <path d="M90 230 L210 340 L40 370 L-30 190" stroke="currentColor" stroke-width="1.3"/>
+            <circle cx="140" cy="90" r="5.5" fill="currentColor"/>
+            <circle cx="90" cy="230" r="7" fill="#047857"/>
+            <circle cx="280" cy="50" r="5" fill="currentColor"/>
+            <circle cx="240" cy="200" r="5.5" fill="currentColor"/>
+            <circle cx="210" cy="340" r="5.5" fill="currentColor"/>
+        </svg>
+
+        <!-- Malla geométrica derecha -->
+        <svg aria-hidden="true" class="pointer-events-none absolute bottom-8 -right-8 w-[500px] h-auto text-emerald-700 opacity-15 select-none" viewBox="0 0 460 400" fill="none">
+            <path d="M480 80 L310 130 L350 280 L490 330" stroke="currentColor" stroke-width="1.6"/>
+            <path d="M310 130 L190 210 L350 280" stroke="currentColor" stroke-width="1.3" stroke-dasharray="5 5"/>
+            <path d="M190 210 L230 350 L350 280" stroke="#1E3A8A" stroke-width="1.3"/>
+            <circle cx="310" cy="130" r="6.5" fill="currentColor"/>
+            <circle cx="350" cy="280" r="6" fill="currentColor"/>
+            <circle cx="190" cy="210" r="5.5" fill="#1E3A8A"/>
+            <circle cx="230" cy="350" r="5" fill="currentColor"/>
+        </svg>
+
+        <div class="relative z-10 max-w-6xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+                <div class="max-w-2xl">
+                    <span data-i18n="casos_kicker" class="inline-block px-3 py-1 rounded-md bg-white/90 text-emerald-700 text-xs font-bold uppercase tracking-widest border border-emerald-200">Proyectos y resultados</span>
+                    <h2 data-i18n="casos_title" class="font-serif text-2xl md:text-4xl font-bold text-editorial-ink mt-3">Casos de estudio</h2>
+                    <p data-i18n="casos_desc" class="text-editorial-muted text-lg mt-3">Iniciativas donde articulé investigación, estrategia comunicacional y optimización operativa. Hacé clic sobre cualquier recuadro para abrir su desarrollo completo.</p>
+                </div>
+
+                <!-- Filtros por eje -->
+                <div class="flex flex-wrap gap-2" role="tablist" aria-label="Filtrar casos de estudio">
+                    <button onclick="filterCases('all', this)" data-i18n="flt_all" class="filter-tab active px-3.5 py-1.5 rounded-lg bg-white border border-editorial-border text-sm font-semibold text-editorial-ink hover:border-cobalt-800 transition cursor-pointer shadow-2xs">
+                        Todos (5)
+                    </button>
+                    <button onclick="filterCases('ia', this)" data-i18n="flt_ia" class="filter-tab px-3.5 py-1.5 rounded-lg bg-white border border-editorial-border text-sm font-semibold text-editorial-ink hover:border-cobalt-800 transition cursor-pointer shadow-2xs">
+                        IA
+                    </button>
+                    <button onclick="filterCases('comunicacion', this)" data-i18n="flt_comm" class="filter-tab px-3.5 py-1.5 rounded-lg bg-white border border-editorial-border text-sm font-semibold text-editorial-ink hover:border-cobalt-800 transition cursor-pointer shadow-2xs">
+                        Comunicación
+                    </button>
+                    <button onclick="filterCases('data', this)" data-i18n="flt_data" class="filter-tab px-3.5 py-1.5 rounded-lg bg-white border border-editorial-border text-sm font-semibold text-editorial-ink hover:border-cobalt-800 transition cursor-pointer shadow-2xs">
+                        Operaciones & Data
+                    </button>
+                    <button onclick="filterCases('periodismo', this)" data-i18n="flt_journ" class="filter-tab px-3.5 py-1.5 rounded-lg bg-white border border-editorial-border text-sm font-semibold text-editorial-ink hover:border-cobalt-800 transition cursor-pointer shadow-2xs">
+                        Periodismo
+                    </button>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+
+                <!-- Case Study 1: Tesis de grado -->
+                <article data-category="ia periodismo" onclick="openCaseModal('tesis')" role="button" tabindex="0" onkeydown="handleCardKey(event, 'tesis')" class="case-item editorial-card rounded-2xl p-8 flex flex-col justify-between cursor-pointer group">
+                    <div>
+                        <div class="flex items-center justify-between gap-2 mb-5">
+                            <span data-i18n="cs1_tag" class="px-3 py-1 rounded-full text-xs font-bold bg-emerald-50 text-emerald-700 border border-emerald-200">
+                                Investigación y benchmarking sectorial
+                            </span>
+                            <span data-i18n="cs1_org" class="text-xs text-editorial-muted font-semibold">UBA · Tesis de grado</span>
+                        </div>
+                        <h3 data-i18n="cs1_title" class="font-serif text-xl font-bold text-editorial-ink mb-4 leading-snug group-hover:text-cobalt-800 transition">
+                            El periodismo en la era de la Inteligencia Artificial
+                        </h3>
+                        <p data-i18n="cs1_desc" class="text-base text-editorial-muted leading-relaxed mb-6">
+                            Esta investigación de grado desarrolla un análisis crítico del discurso que incorpora aportes teóricos multidisciplinarios para examinar cómo el ecosistema de medios argentino significa e integra la Inteligencia Artificial frente a la tensión entre automatización, propiedad intelectual y sostenibilidad institucional.
+                        </p>
+                    </div>
+
+                    <div>
+                        <div class="flex items-center justify-between text-xs font-bold text-emerald-700 mb-4">
+                            <span data-i18n="cs_cta">Hacé clic para leer el caso completo</span>
+                            <span class="group-hover:translate-x-1 transition-transform">→</span>
+                        </div>
+                        <div class="pt-5 border-t border-slate-200 grid grid-cols-2 gap-4 bg-slate-50/90 -mx-8 -mb-8 px-8 py-5 rounded-b-2xl">
+                            <div>
+                                <span data-i18n="cs1_m1_val" class="block font-serif text-lg font-bold text-emerald-700">191 materiales</span>
+                                <span data-i18n="cs1_m1_lbl" class="text-xs text-editorial-muted">Relevados en 17 fuentes sectoriales</span>
+                            </div>
+                            <div>
+                                <span data-i18n="cs1_m2_val" class="block font-serif text-lg font-bold text-editorial-ink">Python + ACD</span>
+                                <span data-i18n="cs1_m2_lbl" class="text-xs text-editorial-muted">Rastreo y matriz de benchmarking</span>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Case Study 2: AIgniters & AI Champion -->
+                <article data-category="ia" onclick="openCaseModal('aigniters')" role="button" tabindex="0" onkeydown="handleCardKey(event, 'aigniters')" class="case-item editorial-card rounded-2xl p-8 flex flex-col justify-between cursor-pointer group">
+                    <div>
+                        <div class="flex items-center justify-between gap-2 mb-5">
+                            <span data-i18n="cs2_tag" class="px-3 py-1 rounded-full text-xs font-bold bg-cobalt-50 text-cobalt-800 border border-blue-200">
+                                IA aplicada y gestión del cambio
+                            </span>
+                            <span class="text-xs text-editorial-muted font-semibold">EY GDS · 2025 – 2026</span>
+                        </div>
+                        <h3 data-i18n="cs2_title" class="font-serif text-xl font-bold text-editorial-ink mb-4 leading-snug group-hover:text-cobalt-800 transition">
+                            Liderazgo en adopción global de IA (AIgniters y AI Champion)
+                        </h3>
+                        <p data-i18n="cs2_desc" class="text-base text-editorial-muted leading-relaxed mb-6">
+                            Co-coordinación global de la iniciativa <em>AIgniters</em> junto a referentes de Estados Unidos para acelerar la adopción práctica de Inteligencia Artificial Generativa en equipos internacionales de gestión de cuentas, traduciendo herramientas en hábitos operativos cotidianos.
+                        </p>
+                    </div>
+
+                    <div>
+                        <div class="flex items-center justify-between text-xs font-bold text-cobalt-800 mb-4">
+                            <span data-i18n="cs_cta">Hacé clic para leer el caso completo</span>
+                            <span class="group-hover:translate-x-1 transition-transform">→</span>
+                        </div>
+                        <div class="pt-5 border-t border-slate-200 grid grid-cols-2 gap-4 bg-slate-50/90 -mx-8 -mb-8 px-8 py-5 rounded-b-2xl">
+                            <div>
+                                <span data-i18n="cs2_m1_val" class="block font-serif text-lg font-bold text-cobalt-800">5 países</span>
+                                <span data-i18n="cs2_m1_lbl" class="text-xs text-editorial-muted">Alcance global (+50 profesionales)</span>
+                            </div>
+                            <div>
+                                <span data-i18n="cs2_m2_val" class="block font-serif text-lg font-bold text-editorial-ink">Automatización</span>
+                                <span data-i18n="cs2_m2_lbl" class="text-xs text-editorial-muted">Reportes ejecutivos y pipeline</span>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Case Study 3: Comunicación B2B & Webinars -->
+                <article data-category="comunicacion" onclick="openCaseModal('b2b')" role="button" tabindex="0" onkeydown="handleCardKey(event, 'b2b')" class="case-item editorial-card rounded-2xl p-8 flex flex-col justify-between cursor-pointer group">
+                    <div>
+                        <div class="flex items-center justify-between gap-2 mb-5">
+                            <span data-i18n="cs3_tag" class="px-3 py-1 rounded-full text-xs font-bold bg-emerald-50 text-emerald-700 border border-emerald-200">
+                                Comunicación B2B y gestión del conocimiento
+                            </span>
+                            <span class="text-xs text-editorial-muted font-semibold">EY GDS · 2023 – 2025</span>
+                        </div>
+                        <h3 data-i18n="cs3_title" class="font-serif text-xl font-bold text-editorial-ink mb-4 leading-snug group-hover:text-cobalt-800 transition">
+                            Ecosistema de contenidos omnicanal y comunidad ejecutiva
+                        </h3>
+                        <p data-i18n="cs3_desc" class="text-base text-editorial-muted leading-relaxed mb-6">
+                            Transformación de investigaciones técnicas complejas de los sectores energético e industrial en piezas ejecutivas claras (hasta 35 entregables mensuales) y dirección integral de un programa internacional de 10 webinars anuales con acreditación CPE/CE.
+                        </p>
+                    </div>
+
+                    <div>
+                        <div class="flex items-center justify-between text-xs font-bold text-emerald-700 mb-4">
+                            <span data-i18n="cs_cta">Hacé clic para leer el caso completo</span>
+                            <span class="group-hover:translate-x-1 transition-transform">→</span>
+                        </div>
+                        <div class="pt-5 border-t border-slate-200 grid grid-cols-2 gap-4 bg-slate-50/90 -mx-8 -mb-8 px-8 py-5 rounded-b-2xl">
+                            <div>
+                                <span data-i18n="cs3_m1_val" class="block font-serif text-lg font-bold text-emerald-700">+2.000 prof.</span>
+                                <span data-i18n="cs3_m1_lbl" class="text-xs text-editorial-muted">Comunidad B2B activa (~150/webinar)</span>
+                            </div>
+                            <div>
+                                <span class="block font-serif text-lg font-bold text-editorial-ink">+30% engagement</span>
+                                <span data-i18n="cs3_m2_lbl" class="text-xs text-editorial-muted">Crecimiento sostenido por analítica</span>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Case Study 4: Gracenote Data Governance -->
+                <article data-category="data" onclick="openCaseModal('gracenote')" role="button" tabindex="0" onkeydown="handleCardKey(event, 'gracenote')" class="case-item editorial-card rounded-2xl p-8 flex flex-col justify-between cursor-pointer group">
+                    <div>
+                        <div class="flex items-center justify-between gap-2 mb-5">
+                            <span data-i18n="cs4_tag" class="px-3 py-1 rounded-full text-xs font-bold bg-cobalt-50 text-cobalt-800 border border-blue-200">
+                                Gobernanza de datos y operaciones
+                            </span>
+                            <span class="text-xs text-editorial-muted font-semibold">Gracenote (Nielsen) · 2016 – 2022</span>
+                        </div>
+                        <h3 data-i18n="cs4_title" class="font-serif text-xl font-bold text-editorial-ink mb-4 leading-snug group-hover:text-cobalt-800 transition">
+                            Arquitectura editorial y calidad (QA) en catálogos masivos
+                        </h3>
+                        <p data-i18n="cs4_desc" class="text-base text-editorial-muted leading-relaxed mb-6">
+                            Dirección de procesos editoriales, gobernanza de contenidos y auditorías de calidad para plataformas internacionales de entretenimiento y streaming, cubriendo cerca del 100% de los mercados de Latinoamérica y US Hispanic.
+                        </p>
+                    </div>
+
+                    <div>
+                        <div class="flex items-center justify-between text-xs font-bold text-cobalt-800 mb-4">
+                            <span data-i18n="cs_cta">Hacé clic para leer el caso completo</span>
+                            <span class="group-hover:translate-x-1 transition-transform">→</span>
+                        </div>
+                        <div class="pt-5 border-t border-slate-200 grid grid-cols-2 gap-4 bg-slate-50/90 -mx-8 -mb-8 px-8 py-5 rounded-b-2xl">
+                            <div>
+                                <span data-i18n="cs4_m1_val" class="block font-serif text-lg font-bold text-cobalt-800">>95% precisión</span>
+                                <span data-i18n="cs4_m1_lbl" class="text-xs text-editorial-muted">Sobre ~40 millones de activos</span>
+                            </div>
+                            <div>
+                                <span data-i18n="cs4_m2_val" class="block font-serif text-lg font-bold text-editorial-ink">+30 editores</span>
+                                <span data-i18n="cs4_m2_lbl" class="text-xs text-editorial-muted">Liderados en LATAM y US Hispanic</span>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Case Study 5: Lavado Papers & Periodismo -->
+                <article data-category="periodismo comunicacion" onclick="openCaseModal('periodismo')" role="button" tabindex="0" onkeydown="handleCardKey(event, 'periodismo')" class="case-item editorial-card rounded-2xl p-8 flex flex-col justify-between md:col-span-2 cursor-pointer group">
+                    <div>
+                        <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
+                            <span data-i18n="cs5_tag" class="px-3 py-1 rounded-full text-xs font-bold bg-cobalt-50 text-cobalt-800 border border-blue-200">
+                                Periodismo de investigación y alianzas
+                            </span>
+                            <span class="text-xs text-editorial-muted font-semibold">Lavado Papers · ANCCOM (UBA) · REDCOM</span>
+                        </div>
+                        <h3 data-i18n="cs5_title" class="font-serif text-xl md:text-2xl font-bold text-editorial-ink mb-4 leading-snug group-hover:text-cobalt-800 transition">
+                            Lavado Papers y coberturas de impacto público: el origen de mi rigor editorial
+                        </h3>
+                        <p data-i18n="cs5_desc" class="text-base text-editorial-muted leading-relaxed mb-4">
+                            Antes de liderar estrategias en entornos corporativos, consolidé mi oficio en redacciones y proyectos colaborativos de investigación como <strong class="text-editorial-ink font-semibold">Lavado Papers</strong> (en alianza entre <em>Lavaca/MU</em>, <em>Tiempo Argentino</em> y <em>REDCOM</em>) y en crónicas institucionales, culturales y sociales publicadas en <em>ANCCOM (UBA)</em>.
+                        </p>
+                    </div>
+
+                    <div class="pt-4 border-t border-slate-200 flex items-center justify-between text-xs font-bold text-cobalt-800">
+                        <span data-i18n="cs5_cta">Hacé clic para ver el contexto completo y acceder a los 6 artículos e informes publicados</span>
+                        <span class="group-hover:translate-x-1 transition-transform">→</span>
+                    </div>
+                </article>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Experiencia destacada con fondo reticular + constelaciones laterales visibles -->
+    <section id="trayectoria" class="relative overflow-hidden py-24 section-warm-slate texture-grid border-b border-editorial-border">
+        <!-- SVG Decorativo lateral izquierdo -->
+        <svg aria-hidden="true" class="pointer-events-none hidden md:block absolute top-24 -left-12 w-[380px] h-auto text-cobalt-800 opacity-18 select-none" viewBox="0 0 340 680" fill="none">
+            <path d="M40 40 L190 120 L110 270 L240 390 L90 540 L180 650" stroke="currentColor" stroke-width="1.6"/>
+            <path d="M190 120 L270 210 L240 390 M110 270 L20 350 L90 540" stroke="currentColor" stroke-width="1.2" stroke-dasharray="5 5"/>
+            <circle cx="40" cy="40" r="5" fill="currentColor"/>
+            <circle cx="190" cy="120" r="6.5" fill="#047857"/>
+            <circle cx="110" cy="270" r="5.5" fill="currentColor"/>
+            <circle cx="240" cy="390" r="6.5" fill="currentColor"/>
+            <circle cx="90" cy="540" r="5" fill="#047857"/>
+            <circle cx="180" cy="650" r="5" fill="currentColor"/>
+        </svg>
+
+        <!-- SVG Decorativo lateral derecho -->
+        <svg aria-hidden="true" class="pointer-events-none hidden md:block absolute bottom-20 -right-12 w-[380px] h-auto text-emerald-700 opacity-18 select-none" viewBox="0 0 340 680" fill="none">
+            <path d="M290 50 L150 150 L230 300 L110 440 L250 580" stroke="currentColor" stroke-width="1.6"/>
+            <path d="M150 150 L70 240 L110 440 M230 300 L310 380 L250 580" stroke="#1E3A8A" stroke-width="1.2" stroke-dasharray="5 5"/>
+            <circle cx="290" cy="50" r="5" fill="currentColor"/>
+            <circle cx="150" cy="150" r="6.5" fill="#1E3A8A"/>
+            <circle cx="230" cy="300" r="5.5" fill="currentColor"/>
+            <circle cx="110" cy="440" r="6.5" fill="currentColor"/>
+            <circle cx="250" cy="580" r="5" fill="#1E3A8A"/>
+        </svg>
+
+        <div class="relative z-10 max-w-4xl mx-auto px-6">
+            <div class="text-center mb-14">
+                <span data-i18n="exp_kicker" class="inline-block px-3 py-1 rounded-md bg-emerald-100/80 text-emerald-700 text-xs font-bold uppercase tracking-widest">Recorrido profesional</span>
+                <h2 data-i18n="exp_title" class="font-serif text-2xl md:text-4xl font-bold text-editorial-ink mt-3">Experiencia destacada</h2>
+                <p data-i18n="exp_desc" class="text-editorial-muted text-lg mt-3 max-w-2xl mx-auto">
+                    Evolución profesional desde la investigación periodística y la gestión editorial de datos masivos hasta el liderazgo de cuentas, conocimiento e innovación con IA.
+                </p>
+            </div>
+
+            <div class="space-y-8 border-l-2 border-cobalt-800/30 pl-6 md:pl-8 ml-2 md:ml-4">
+                
+                <!-- Rol 1 -->
+                <div class="relative bg-white border border-slate-200 border-l-4 border-l-cobalt-800 rounded-2xl p-6 shadow-sm">
+                    <span class="absolute -left-[35px] md:-left-[43px] top-7 w-4 h-4 rounded-full bg-cobalt-800 ring-4 ring-blue-100"></span>
+                    <div class="flex flex-wrap items-center justify-between gap-2 mb-1">
+                        <span data-i18n="r1_date" class="text-xs font-bold text-cobalt-800 uppercase tracking-wide">Abr 2025 – May 2026</span>
+                        <span class="text-xs font-semibold text-editorial-muted">EY GDS · Buenos Aires (Global)</span>
+                    </div>
+                    <h3 class="font-serif text-lg md:text-xl font-bold text-editorial-ink">Account Manager – Assistant Director</h3>
+                    <p data-i18n="r1_desc" class="text-base text-editorial-muted leading-relaxed mt-3">
+                        Administración integral del pipeline comercial de cuentas clave, reporte ejecutivo directo a socios y coordinación transversal de proyectos con equipos multidisciplinarios en 5 países (+50 personas). Referente global de innovación y <em>AI Champion</em> en el grupo <em>AIgniters</em>, impulsando la adopción cotidiana de IA Generativa (ChatGPT, Claude y Microsoft Copilot) mediante guías prácticas, campañas internas y automatización de reportes y flujos de seguimiento.
+                    </p>
+                </div>
+
+                <!-- Rol 2 -->
+                <div class="relative bg-white border border-slate-200 border-l-4 border-l-emerald-600 rounded-2xl p-6 shadow-sm">
+                    <span class="absolute -left-[35px] md:-left-[43px] top-7 w-4 h-4 rounded-full bg-emerald-600 ring-4 ring-emerald-100"></span>
+                    <div class="flex flex-wrap items-center justify-between gap-2 mb-1">
+                        <span data-i18n="r2_date" class="text-xs font-bold text-emerald-700 uppercase tracking-wide">Ene 2023 – Mar 2025</span>
+                        <span class="text-xs font-semibold text-editorial-muted">EY GDS · Buenos Aires (Global)</span>
+                    </div>
+                    <h3 class="font-serif text-lg md:text-xl font-bold text-editorial-ink">Knowledge Manager – Supervising Associate</h3>
+                    <p data-i18n="r2_desc" class="text-base text-editorial-muted leading-relaxed mt-3">
+                        Diseño y ejecución de estrategias de comunicación omnicanal y gestión del conocimiento para audiencias globales en más de 5 mercados, transformando investigaciones técnicas en hasta 35 entregables mensuales. Construcción y dinamización de una comunidad B2B internacional de más de 2.000 profesionales a través de un programa anual de 10 webinars con acreditación (CPE/CE) y boletines estratégicos, logrando un incremento del ~30% en el <em>engagement</em> mediante analítica de KPIs y mejora continua (Lean Six Sigma).
+                    </p>
+                </div>
+
+                <!-- Rol 3 -->
+                <div class="relative bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
+                    <span class="absolute -left-[35px] md:-left-[43px] top-7 w-3.5 h-3.5 rounded-full bg-slate-600 ring-4 ring-slate-200"></span>
+                    <div class="flex flex-wrap items-center justify-between gap-2 mb-1">
+                        <span data-i18n="r3_date" class="text-xs font-bold text-editorial-muted uppercase tracking-wide">Ago 2018 – Dic 2022</span>
+                        <span class="text-xs font-semibold text-editorial-muted">Gracenote (Nielsen) · LATAM & US Hispanic</span>
+                    </div>
+                    <h3 class="font-serif text-lg md:text-xl font-bold text-editorial-ink">LATAM & US Hispanic Senior Editorial Specialist</h3>
+                    <p data-i18n="r3_desc" class="text-base text-editorial-muted leading-relaxed mt-3">
+                        Dirección de procesos editoriales, arquitectura de información y gobernanza de contenidos para plataformas internacionales de entretenimiento, cubriendo cerca del 100% de los mercados de Latinoamérica y US Hispanic. Supervisión de auditorías de calidad (QA >95%) sobre bases de datos de aproximadamente 40 millones de activos, diagnóstico de flujos operativos y capacitación de equipos de más de 30 redactores y editores.
+                    </p>
+                </div>
+
+                <!-- Rol 4 -->
+                <div class="relative bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
+                    <span class="absolute -left-[35px] md:-left-[43px] top-7 w-3.5 h-3.5 rounded-full bg-slate-500 ring-4 ring-slate-200"></span>
+                    <div class="flex flex-wrap items-center justify-between gap-2 mb-1">
+                        <span data-i18n="r4_date" class="text-xs font-bold text-editorial-muted uppercase tracking-wide">Ago 2017 – Ago 2018</span>
+                        <span class="text-xs font-semibold text-editorial-muted">Gracenote (Nielsen) · Buenos Aires</span>
+                    </div>
+                    <h3 class="font-serif text-lg md:text-xl font-bold text-editorial-ink">Enrichment Editor</h3>
+                    <p data-i18n="r4_desc" class="text-base text-editorial-muted leading-relaxed mt-3">
+                        Edición, categorización y enriquecimiento de contenido editorial vinculado a programación televisiva y catálogos audiovisuales internacionales, procesando hasta 1.000 piezas mensuales. Investigación documental y validación de fuentes bajo estándares editoriales estrictos para garantizar trazabilidad e integridad de datos.
+                    </p>
+                </div>
+
+                <!-- Rol 5 -->
+                <div class="relative bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
+                    <span class="absolute -left-[35px] md:-left-[43px] top-7 w-3.5 h-3.5 rounded-full bg-slate-500 ring-4 ring-slate-200"></span>
+                    <div class="flex flex-wrap items-center justify-between gap-2 mb-1">
+                        <span data-i18n="r5_date" class="text-xs font-bold text-editorial-muted uppercase tracking-wide">Ago 2016 – Ago 2017</span>
+                        <span class="text-xs font-semibold text-editorial-muted">Gracenote (Nielsen) · Buenos Aires</span>
+                    </div>
+                    <h3 class="font-serif text-lg md:text-xl font-bold text-editorial-ink">Metadata Production Editor</h3>
+                    <p data-i18n="r5_desc" class="text-base text-editorial-muted leading-relaxed mt-3">
+                        Recepción, estructuración y actualización de grillas de programación y catálogos audiovisuales para más de 80 canales y plataformas de streaming, asegurando un 100% de precisión técnica y el cumplimiento estricto de los cronogramas de publicación.
+                    </p>
+                </div>
+
+                <!-- Rol 6: ANCCOM -->
+                <div class="relative bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
+                    <span class="absolute -left-[35px] md:-left-[43px] top-7 w-3.5 h-3.5 rounded-full bg-slate-400 ring-4 ring-slate-200"></span>
+                    <div class="flex flex-wrap items-center justify-between gap-2 mb-1">
+                        <span data-i18n="r6_date" class="text-xs font-bold text-editorial-muted uppercase tracking-wide">Mar 2016 – Mar 2017</span>
+                        <span data-i18n="r6_org" class="text-xs font-semibold text-editorial-muted">ANCCOM – Agencia de Noticias (UBA)</span>
+                    </div>
+                    <h3 data-i18n="r6_title" class="font-serif text-lg md:text-xl font-bold text-editorial-ink">Periodista y redactor</h3>
+                    <p data-i18n="r6_desc" class="text-base text-editorial-muted leading-relaxed mt-3">
+                        Investigación periodística, entrevistas en profundidad y redacción de crónicas y artículos analíticos sobre sociedad, política y economía para soportes digitales, incluyendo la participación en proyectos colaborativos interinstitucionales como <em>Lavado Papers</em>.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Formación y certificaciones con degradado arena-azul y polígonos geométricos -->
+    <section id="credenciales" class="relative overflow-hidden py-24 section-paper">
+        <!-- SVG Decorativo: Polígonos geométricos -->
+        <svg aria-hidden="true" class="pointer-events-none absolute top-10 -right-10 w-[500px] h-auto text-cobalt-800 opacity-15 select-none" viewBox="0 0 440 440" fill="none">
+            <polygon points="240,30 390,110 390,270 240,350 90,270 90,110" stroke="currentColor" stroke-width="1.6"/>
+            <polygon points="240,80 345,135 345,245 240,300 135,245 135,135" stroke="currentColor" stroke-width="1.2" stroke-dasharray="5 5"/>
+            <line x1="240" y1="30" x2="240" y2="350" stroke="currentColor" stroke-width="1"/>
+            <line x1="90" y1="110" x2="390" y2="270" stroke="currentColor" stroke-width="1"/>
+            <line x1="390" y1="110" x2="90" y2="270" stroke="currentColor" stroke-width="1"/>
+            <circle cx="240" cy="190" r="6.5" fill="#047857"/>
+            <circle cx="240" cy="30" r="4.5" fill="currentColor"/>
+            <circle cx="390" cy="110" r="4.5" fill="currentColor"/>
+            <circle cx="390" cy="270" r="4.5" fill="currentColor"/>
+        </svg>
+
+        <!-- SVG Decorativo inferior izquierdo -->
+        <svg aria-hidden="true" class="pointer-events-none absolute bottom-10 -left-10 w-[420px] h-auto text-emerald-700 opacity-15 select-none" viewBox="0 0 420 320" fill="none">
+            <circle cx="140" cy="180" r="130" stroke="currentColor" stroke-width="1.5"/>
+            <circle cx="140" cy="180" r="85" stroke="#1E3A8A" stroke-width="1.2" stroke-dasharray="5 5"/>
+            <line x1="10" y1="180" x2="320" y2="180" stroke="currentColor" stroke-width="1.2"/>
+            <line x1="140" y1="30" x2="140" y2="310" stroke="currentColor" stroke-width="1.2"/>
+            <circle cx="140" cy="180" r="6" fill="#1E3A8A"/>
+            <circle cx="270" cy="180" r="5" fill="currentColor"/>
+        </svg>
+
+        <div class="relative z-10 max-w-4xl mx-auto px-6">
+            <div class="text-center mb-14">
+                <span data-i18n="cred_kicker" class="inline-block px-3 py-1 rounded-md bg-white/90 text-emerald-700 text-xs font-bold uppercase tracking-widest border border-emerald-200">Credenciales académicas y técnicas</span>
+                <h2 data-i18n="cred_title" class="font-serif text-2xl md:text-4xl font-bold text-editorial-ink mt-3">Formación y certificaciones</h2>
+            </div>
+
+            <!-- Educación universitaria destacada -->
+            <div class="bg-white border border-slate-200 rounded-2xl p-8 mb-8 shadow-md">
+                <div class="flex flex-col md:flex-row md:items-center justify-between gap-2 mb-3">
+                    <span data-i18n="uba_kicker" class="text-xs font-bold uppercase tracking-wider text-cobalt-800">Formación universitaria de grado</span>
+                    <span data-i18n="uba_uni" class="text-xs font-semibold text-editorial-muted">Universidad de Buenos Aires (UBA)</span>
+                </div>
+                <h3 data-i18n="uba_degree" class="font-serif text-xl font-bold text-editorial-ink">
+                    Licenciatura en Ciencias de la Comunicación Social
+                </h3>
+                <p data-i18n="uba_desc" class="text-base text-editorial-muted mt-2 leading-relaxed">
+                    Orientación en Periodismo. Formación integral en comunicación estratégica, análisis crítico del discurso, planificación y gestión de la información, investigación de medios y cultura digital.
+                </p>
+                <p data-i18n="uba_thesis" class="text-sm text-editorial-ink font-medium mt-3 pt-3 border-t border-slate-200">
+                    Tesis de grado: <span class="italic font-normal text-editorial-muted">«El periodismo en la era de la Inteligencia Artificial» (análisis crítico del discurso con aportes teóricos multidisciplinarios y metodología de rastreo en Python).</span>
+                </p>
+            </div>
+
+            <!-- Grilla de certificaciones -->
+            <div class="grid md:grid-cols-2 gap-6 mb-10">
+                <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
+                    <h3 data-i18n="cert_g1_title" class="font-serif text-base font-bold text-cobalt-800 mb-3">Inteligencia Artificial y gobernanza</h3>
+                    <ul class="text-sm text-editorial-muted space-y-2">
+                        <li>• EY Artificial Intelligence – Applied AI Bronze (EY GDS)</li>
+                        <li>• AI Governance Essentials – From Risks to Responsible Use</li>
+                        <li>• AI Now 2.0 – Use GenAI as your Thought Partner</li>
+                        <li>• Build Your Leadership Brand with Generative AI</li>
+                    </ul>
+                </div>
+
+                <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
+                    <h3 data-i18n="cert_g2_title" class="font-serif text-base font-bold text-emerald-700 mb-3">Procesos, proyectos y comunicación</h3>
+                    <ul data-i18n="cert_g2_list" class="text-sm text-editorial-muted space-y-2">
+                        <li>• Lean Six Sigma White Belt Training (EY GDS)</li>
+                        <li>• Project Management (Educación IT) y Change Management</li>
+                        <li>• Business Analysis Analytical Techniques</li>
+                        <li>• Storytelling for Leaders (Skillsoft) y Community Management (ETER)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Ecosistema tecnológico e idiomas centrado -->
+            <div class="bg-white border border-slate-200 rounded-2xl p-6 text-center shadow-sm">
+                <h3 data-i18n="eco_title" class="font-serif text-base font-bold text-editorial-ink mb-4">Ecosistema tecnológico e idiomas</h3>
+                <div class="flex flex-wrap justify-center gap-2">
+                    <span data-i18n="lang_es" class="px-3.5 py-1.5 rounded-lg bg-cobalt-50 border border-blue-200 text-xs font-bold text-cobalt-800">Español</span>
+                    <span data-i18n="lang_en" class="px-3.5 py-1.5 rounded-lg bg-cobalt-50 border border-blue-200 text-xs font-bold text-cobalt-800">Inglés</span>
+                    <span class="px-3.5 py-1.5 rounded-lg bg-slate-100 border border-slate-200 text-xs font-semibold text-editorial-ink">ChatGPT</span>
+                    <span class="px-3.5 py-1.5 rounded-lg bg-slate-100 border border-slate-200 text-xs font-semibold text-editorial-ink">Claude</span>
+                    <span class="px-3.5 py-1.5 rounded-lg bg-slate-100 border border-slate-200 text-xs font-semibold text-editorial-ink">Copilot</span>
+                    <span class="px-3.5 py-1.5 rounded-lg bg-slate-100 border border-slate-200 text-xs font-semibold text-editorial-ink">Gemini</span>
+                    <span class="px-3.5 py-1.5 rounded-lg bg-slate-100 border border-slate-200 text-xs font-semibold text-editorial-ink">Power BI</span>
+                    <span class="px-3.5 py-1.5 rounded-lg bg-slate-100 border border-slate-200 text-xs font-semibold text-editorial-ink">SharePoint</span>
+                    <span class="px-3.5 py-1.5 rounded-lg bg-slate-100 border border-slate-200 text-xs font-semibold text-editorial-ink">Salesforce</span>
+                    <span class="px-3.5 py-1.5 rounded-lg bg-slate-100 border border-slate-200 text-xs font-semibold text-editorial-ink">ServiceNow</span>
+                    <span class="px-3.5 py-1.5 rounded-lg bg-slate-100 border border-slate-200 text-xs font-semibold text-editorial-ink">Microsoft Office Suite</span>
+                    <span class="px-3.5 py-1.5 rounded-lg bg-slate-100 border border-slate-200 text-xs font-semibold text-editorial-ink">Google Suite</span>
+                    <span class="px-3.5 py-1.5 rounded-lg bg-slate-100 border border-slate-200 text-xs font-semibold text-editorial-ink">CapCut</span>
+                    <span class="px-3.5 py-1.5 rounded-lg bg-slate-100 border border-slate-200 text-xs font-semibold text-editorial-ink">Canva</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer / Contacto en azul noche profundo con malla luminosa -->
+    <footer id="contacto" class="relative overflow-hidden py-24 bg-slate-900 text-white">
+        <!-- SVG Decorativo: Ondas luminosas sobre fondo oscuro -->
+        <svg aria-hidden="true" class="pointer-events-none absolute inset-0 w-full h-full opacity-25 select-none" viewBox="0 0 1200 360" preserveAspectRatio="none" fill="none">
+            <path d="M-50 280 Q 300 120, 600 230 T 1250 130" stroke="#60A5FA" stroke-width="1.8"/>
+            <path d="M-50 320 Q 300 160, 600 270 T 1250 170" stroke="#34D399" stroke-width="1.5"/>
+            <path d="M-50 240 Q 300 80, 600 190 T 1250 90" stroke="#93C5FD" stroke-width="1.1" stroke-dasharray="6 6"/>
+            <circle cx="300" cy="185" r="5" fill="#60A5FA"/>
+            <circle cx="600" cy="230" r="6" fill="#34D399"/>
+            <circle cx="920" cy="185" r="5" fill="#60A5FA"/>
+        </svg>
+
+        <div class="relative z-10 max-w-4xl mx-auto px-6 text-center">
+            <span data-i18n="foot_kicker" class="inline-block px-3.5 py-1 rounded-full bg-white/10 text-blue-300 text-xs font-bold uppercase tracking-widest mb-4">
+                Próximos pasos
+            </span>
+            <h2 data-i18n="foot_title" class="font-serif text-3xl md:text-4xl font-bold text-white mb-4">
+                ¿Conversamos?
+            </h2>
+            <p data-i18n="foot_desc" class="text-slate-300 text-lg mb-10 max-w-2xl mx-auto leading-relaxed">
+                Si tu equipo busca transformar información compleja en conocimiento claro, optimizar flujos operativos o acelerar la adopción cotidiana de Inteligencia Artificial sin perder su diferencial humano, me encantaría conocer más acerca del desafío.
+            </p>
+
+            <div class="flex flex-wrap justify-center gap-4 mb-12">
+                <a href="mailto:godoyramiro.rg@gmail.com" class="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-cobalt-700 text-white font-semibold text-base hover:bg-blue-600 transition shadow-lg">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                    godoyramiro.rg@gmail.com
+                </a>
+                <a href="https://www.linkedin.com/in/ramirogodoy/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-white/10 text-white font-semibold text-base border border-white/20 hover:bg-white/20 transition">
+                    <svg class="w-4 h-4 text-blue-300" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                    LinkedIn
+                </a>
+                <a href="https://wa.me/5491125770057" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-white/10 text-white font-semibold text-base border border-white/20 hover:bg-white/20 transition">
+                    <svg class="w-4 h-4 text-emerald-400" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
+                    +54 11 2577 0057
+                </a>
+            </div>
+
+            <p data-i18n="foot_copy" class="text-xs text-slate-400">
+                © 2026 Ramiro David Godoy · Buenos Aires, Argentina · Todos los derechos reservados.
+            </p>
+        </div>
+    </footer>
+
+    <!-- Modal Overlay para Casos de Estudio (se abre por encima con X en esquina superior derecha) -->
+    <div id="case-modal" class="hidden fixed inset-0 z-50 bg-slate-900/65 backdrop-blur-sm flex items-center justify-center p-4 md:p-6 overflow-y-auto" onclick="closeModalOnBackdrop(event)" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+        <div class="modal-animate bg-white border border-editorial-border rounded-2xl max-w-3xl w-full max-h-[88vh] overflow-y-auto shadow-2xl relative">
+            
+            <!-- Encabezado fijo del modal con la X en la esquina superior derecha -->
+            <div class="sticky top-0 z-10 bg-white/95 backdrop-blur-md px-6 md:px-8 py-4 border-b border-editorial-border flex items-center justify-between gap-4">
+                <div class="flex flex-wrap items-center gap-2">
+                    <span id="modal-tag" class="px-3 py-1 rounded-full text-xs font-bold"></span>
+                    <span id="modal-org" class="text-xs text-editorial-muted font-semibold"></span>
+                </div>
+                <button onclick="closeCaseModal()" aria-label="Cerrar caso de estudio" class="p-2 rounded-lg text-editorial-muted hover:text-editorial-ink hover:bg-slate-100 transition cursor-pointer shrink-0">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Cuerpo completo del caso de estudio -->
+            <div class="p-6 md:p-8">
+                <h3 id="modal-title" class="font-serif text-2xl md:text-3xl font-bold text-editorial-ink mb-6 leading-snug"></h3>
+                
+                <div id="modal-paragraphs" class="space-y-4 text-base text-editorial-muted leading-relaxed"></div>
+
+                <!-- Destacado adicional con enlaces directos a artículos publicados -->
+                <div id="modal-highlights" class="mt-6"></div>
+
+                <!-- Etiquetas de competencias / herramientas -->
+                <div id="modal-skills-wrapper" class="mt-6 pt-5 border-t border-editorial-border">
+                    <span data-i18n="modal_skills_lbl" class="block text-xs font-bold uppercase tracking-wider text-editorial-ink mb-3">Enfoque metodológico y herramientas</span>
+                    <div id="modal-skills" class="flex flex-wrap gap-2"></div>
+                </div>
+
+                <!-- Métricas de cierre -->
+                <div id="modal-metrics" class="mt-6 pt-5 border-t border-editorial-border grid grid-cols-2 gap-4 bg-slate-50 p-5 rounded-xl"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentLang = 'es';
+        let activeCaseId = null;
+
+        // Menú móvil
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+        document.getElementById('mobile-menu-btn').addEventListener('click', toggleMobileMenu);
+
+        // Filtro de casos de estudio
+        function filterCases(category, btn) {
+            const items = document.querySelectorAll('.case-item');
+            items.forEach(item => {
+                const cats = item.getAttribute('data-category');
+                if (category === 'all' || cats.includes(category)) {
+                    item.classList.remove('hidden-card');
+                } else {
+                    item.classList.add('hidden-card');
+                }
+            });
+            document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+            btn.classList.add('active');
+        }
+
+        // Diccionario completo de interfaz (ES / EN)
+        const uiTranslations = {
+            es: {
+                page_title: "Ramiro D. Godoy | Comunicación estratégica, innovación e IA aplicada",
+                nav_perfil: "Perfil",
+                nav_pilares: "Pilares",
+                nav_casos: "Casos de estudio",
+                nav_trayectoria: "Trayectoria",
+                nav_credenciales: "Credenciales",
+                nav_contacto: "Contacto",
+                hero_badge: "Comunicación estratégica · Adopción de IA · Innovación de procesos",
+                hero_title: 'El puente para transformar <span class="text-cobalt-800 italic">información en conocimiento</span> y el conocimiento en impacto.',
+                hero_desc: 'Licenciado en Ciencias de la Comunicación Social en la <strong class="text-editorial-ink font-semibold">Universidad de Buenos Aires (UBA)</strong> con más de 10 años de trayectoria en entornos corporativos globales y multiculturales. Especialista en comunicación estratégica, gestión del conocimiento, benchmarking e innovación aplicada. Actúo como el puente entre la tecnología, los procesos y las personas para transformar información compleja en conocimiento claro, comunidades activas e impacto medible.',
+                hero_cta1: "Explorar casos de estudio",
+                hero_cta2: "Conversar sobre un proyecto",
+                arch_title: "Arquitectura de valor",
+                arch_s1_title: "01 · Información & Datos",
+                arch_s1_desc: "Curaduría, benchmarking y gobernanza de fuentes complejas.",
+                arch_s2_title: "02 · Conocimiento & IA",
+                arch_s2_desc: "Narrativa clara, enablement y procesos optimizados.",
+                arch_s3_title: "03 · Impacto Medible",
+                arch_s3_desc: "Adopción real, eficiencia operativa y comunidades activas.",
+                m1_val: "+10 años",
+                m1_lbl: "Trayectoria global en comunicación, contenido y operaciones",
+                m2_val: "5 países",
+                m2_lbl: "Liderazgo de adopción de IA y cuentas clave (+50 personas)",
+                m3_lbl: "Incremento de engagement en comunidad B2B (+2.000 prof.)",
+                m4_lbl: "Activos gestionados con estándar de calidad QA >95%",
+                pil_kicker: "Propuesta de valor",
+                pil_title: "Donde la estrategia comunicacional se encuentra con la tecnología",
+                p1_title: "Adopción de IA y enablement",
+                p1_desc: "Diseño de programas de activación, guías prácticas y gestión del cambio para traducir herramientas de IA generativa en hábitos operativos cotidianos.",
+                p2_title: "Innovación de procesos",
+                p2_desc: "Diagnóstico de cuellos de botella (Lean Six Sigma), automatización de reportes ejecutivos, estandarización de flujos y seguimiento de KPIs.",
+                p3_title: "Estrategias de publicación y contenido",
+                p3_desc: 'Planificación editorial, redacción estratégica, curaduría multicanal y calendarización de entregables globales, desarrollados con fluidez tanto en <strong class="text-editorial-ink font-semibold">español como en inglés</strong>.',
+                p4_title: "Comunicación y comunidades",
+                p4_desc: "Storytelling ejecutivo, gestión de cuentas clave, dirección de webinars internacionales y dinamización de comunidades B2B activas.",
+                p5_title: "Benchmarking y calidad de datos",
+                p5_desc: "Rastreo metodológico de fuentes, matrices de análisis comparativo, arquitectura de información y gobernanza de bases de datos masivas.",
+                casos_kicker: "Proyectos y resultados",
+                casos_title: "Casos de estudio",
+                casos_desc: "Iniciativas donde articulé investigación, estrategia comunicacional y optimización operativa. Hacé clic sobre cualquier recuadro para abrir su desarrollo completo.",
+                flt_all: "Todos (5)",
+                flt_ia: "IA",
+                flt_comm: "Comunicación",
+                flt_data: "Operaciones & Data",
+                flt_journ: "Periodismo",
+                cs_cta: "Hacé clic para leer el caso completo",
+                cs1_tag: "Investigación y benchmarking sectorial",
+                cs1_org: "UBA · Tesis de grado",
+                cs1_title: "El periodismo en la era de la Inteligencia Artificial",
+                cs1_desc: "Esta investigación de grado desarrolla un análisis crítico del discurso que incorpora aportes teóricos multidisciplinarios para examinar cómo el ecosistema de medios argentino significa e integra la Inteligencia Artificial frente a la tensión entre automatización, propiedad intelectual y sostenibilidad institucional.",
+                cs1_m1_val: "191 materiales",
+                cs1_m1_lbl: "Relevados en 17 fuentes sectoriales",
+                cs1_m2_val: "Python + ACD",
+                cs1_m2_lbl: "Rastreo y matriz de benchmarking",
+                cs2_tag: "IA aplicada y gestión del cambio",
+                cs2_title: "Liderazgo en adopción global de IA (AIgniters y AI Champion)",
+                cs2_desc: "Co-coordinación global de la iniciativa <em>AIgniters</em> junto a referentes de Estados Unidos para acelerar la adopción práctica de Inteligencia Artificial Generativa en equipos internacionales de gestión de cuentas, traduciendo herramientas en hábitos operativos cotidianos.",
+                cs2_m1_val: "5 países",
+                cs2_m1_lbl: "Alcance global (+50 profesionales)",
+                cs2_m2_val: "Automatización",
+                cs2_m2_lbl: "Reportes ejecutivos y pipeline",
+                cs3_tag: "Comunicación B2B y gestión del conocimiento",
+                cs3_title: "Ecosistema de contenidos omnicanal y comunidad ejecutiva",
+                cs3_desc: "Transformación de investigaciones técnicas complejas de los sectores energético e industrial en piezas ejecutivas claras (hasta 35 entregables mensuales) y dirección integral de un programa internacional de 10 webinars anuales con acreditación CPE/CE.",
+                cs3_m1_val: "+2.000 prof.",
+                cs3_m1_lbl: "Comunidad B2B activa (~150/webinar)",
+                cs3_m2_lbl: "Crecimiento sostenido por analítica",
+                cs4_tag: "Gobernanza de datos y operaciones",
+                cs4_title: "Arquitectura editorial y calidad (QA) en catálogos masivos",
+                cs4_desc: "Dirección de procesos editoriales, gobernanza de contenidos y auditorías de calidad para plataformas internacionales de entretenimiento y streaming, cubriendo cerca del 100% de los mercados de Latinoamérica y US Hispanic.",
+                cs4_m1_val: ">95% precisión",
+                cs4_m1_lbl: "Sobre ~40 millones de activos",
+                cs4_m2_val: "+30 editores",
+                cs4_m2_lbl: "Liderados en LATAM y US Hispanic",
+                cs5_tag: "Periodismo de investigación y alianzas",
+                cs5_title: "Lavado Papers y coberturas de impacto público: el origen de mi rigor editorial",
+                cs5_desc: 'Antes de liderar estrategias en entornos corporativos, consolidé mi oficio en redacciones y proyectos colaborativos de investigación como <strong class="text-editorial-ink font-semibold">Lavado Papers</strong> (en alianza entre <em>Lavaca/MU</em>, <em>Tiempo Argentino</em> y <em>REDCOM</em>) y en crónicas institucionales, culturales y sociales publicadas en <em>ANCCOM (UBA)</em>.',
+                cs5_cta: "Hacé clic para ver el contexto completo y acceder a los 6 artículos e informes publicados",
+                exp_kicker: "Recorrido profesional",
+                exp_title: "Experiencia destacada",
+                exp_desc: "Evolución profesional desde la investigación periodística y la gestión editorial de datos masivos hasta el liderazgo de cuentas, conocimiento e innovación con IA.",
+                r1_date: "Abr 2025 – May 2026",
+                r1_desc: "Administración integral del pipeline comercial de cuentas clave, reporte ejecutivo directo a socios y coordinación transversal de proyectos con equipos multidisciplinarios en 5 países (+50 personas). Referente global de innovación y <em>AI Champion</em> en el grupo <em>AIgniters</em>, impulsando la adopción cotidiana de IA Generativa (ChatGPT, Claude y Microsoft Copilot) mediante guías prácticas, campañas internas y automatización de reportes y flujos de seguimiento.",
+                r2_date: "Ene 2023 – Mar 2025",
+                r2_desc: "Diseño y ejecución de estrategias de comunicación omnicanal y gestión del conocimiento para audiencias globales en más de 5 mercados, transformando investigaciones técnicas en hasta 35 entregables mensuales. Construcción y dinamización de una comunidad B2B internacional de más de 2.000 profesionales a través de un programa anual de 10 webinars con acreditación (CPE/CE) y boletines estratégicos, logrando un incremento del ~30% en el <em>engagement</em> mediante analítica de KPIs y mejora continua (Lean Six Sigma).",
+                r3_date: "Ago 2018 – Dic 2022",
+                r3_desc: "Dirección de procesos editoriales, arquitectura de información y gobernanza de contenidos para plataformas internacionales de entretenimiento, cubriendo cerca del 100% de los mercados de Latinoamérica y US Hispanic. Supervisión de auditorías de calidad (QA >95%) sobre bases de datos de aproximadamente 40 millones de activos, diagnóstico de flujos operativos y capacitación de equipos de más de 30 redactores y editores.",
+                r4_date: "Ago 2017 – Ago 2018",
+                r4_desc: "Edición, categorización y enriquecimiento de contenido editorial vinculado a programación televisiva y catálogos audiovisuales internacionales, procesando hasta 1.000 piezas mensuales. Investigación documental y validación de fuentes bajo estándares editoriales estrictos para garantizar trazabilidad e integridad de datos.",
+                r5_date: "Ago 2016 – Ago 2017",
+                r5_desc: "Recepción, estructuración y actualización de grillas de programación y catálogos audiovisuales para más de 80 canales y plataformas de streaming, asegurando un 100% de precisión técnica y el cumplimiento estricto de los cronogramas de publicación.",
+                r6_date: "Mar 2016 – Mar 2017",
+                r6_org: "ANCCOM – Agencia de Noticias (UBA)",
+                r6_title: "Periodista y redactor",
+                r6_desc: "Investigación periodística, entrevistas en profundidad y redacción de crónicas y artículos analíticos sobre sociedad, política y economía para soportes digitales, incluyendo la participación en proyectos colaborativos interinstitucionales como <em>Lavado Papers</em>.",
+                cred_kicker: "Credenciales académicas y técnicas",
+                cred_title: "Formación y certificaciones",
+                uba_kicker: "Formación universitaria de grado",
+                uba_uni: "Universidad de Buenos Aires (UBA)",
+                uba_degree: "Licenciatura en Ciencias de la Comunicación Social",
+                uba_desc: "Orientación en Periodismo. Formación integral en comunicación estratégica, análisis crítico del discurso, planificación y gestión de la información, investigación de medios y cultura digital.",
+                uba_thesis: 'Tesis de grado: <span class="italic font-normal text-editorial-muted">«El periodismo en la era de la Inteligencia Artificial» (análisis crítico del discurso con aportes teóricos multidisciplinarios y metodología de rastreo en Python).</span>',
+                cert_g1_title: "Inteligencia Artificial y gobernanza",
+                cert_g2_title: "Procesos, proyectos y comunicación",
+                cert_g2_list: `
+                    <li>• Lean Six Sigma White Belt Training (EY GDS)</li>
+                    <li>• Project Management (Educación IT) y Change Management</li>
+                    <li>• Business Analysis Analytical Techniques</li>
+                    <li>• Storytelling for Leaders (Skillsoft) y Community Management (ETER)</li>
+                `,
+                eco_title: "Ecosistema tecnológico e idiomas",
+                lang_es: "Español",
+                lang_en: "Inglés",
+                foot_kicker: "Próximos pasos",
+                foot_title: "¿Conversamos?",
+                foot_desc: "Si tu equipo busca transformar información compleja en conocimiento claro, optimizar flujos operativos o acelerar la adopción cotidiana de Inteligencia Artificial sin perder su diferencial humano, me encantaría conocer más acerca del desafío.",
+                foot_copy: "© 2026 Ramiro David Godoy · Buenos Aires, Argentina · Todos los derechos reservados.",
+                modal_skills_lbl: "Enfoque metodológico y herramientas"
+            },
+            en: {
+                page_title: "Ramiro D. Godoy | Strategic Communications, Innovation & Applied AI",
+                nav_perfil: "Profile",
+                nav_pilares: "Pillars",
+                nav_casos: "Case Studies",
+                nav_trayectoria: "Experience",
+                nav_credenciales: "Credentials",
+                nav_contacto: "Contact",
+                hero_badge: "Strategic Communications · AI Adoption · Process Innovation",
+                hero_title: 'The bridge transforming <span class="text-cobalt-800 italic">information into knowledge</span> and knowledge into impact.',
+                hero_desc: 'B.A. in Social Communication Sciences from the <strong class="text-editorial-ink font-semibold">University of Buenos Aires (UBA)</strong> with over 10 years of experience in global, multicultural corporate environments. Specialist in strategic communications, knowledge management, benchmarking, and applied innovation. I act as the bridge between technology, processes, and people to transform complex information into clear knowledge, active communities, and measurable impact.',
+                hero_cta1: "Explore case studies",
+                hero_cta2: "Discuss a project",
+                arch_title: "Value Architecture",
+                arch_s1_title: "01 · Information & Data",
+                arch_s1_desc: "Curation, benchmarking, and governance of complex sources.",
+                arch_s2_title: "02 · Knowledge & AI",
+                arch_s2_desc: "Clear narrative, enablement, and optimized workflows.",
+                arch_s3_title: "03 · Measurable Impact",
+                arch_s3_desc: "Real adoption, operational efficiency, and active communities.",
+                m1_val: "10+ yrs",
+                m1_lbl: "Global track record in communications, content, and operations",
+                m2_val: "5 countries",
+                m2_lbl: "Leading AI adoption and key accounts (50+ professionals)",
+                m3_lbl: "Engagement growth in B2B community (2,000+ professionals)",
+                m4_lbl: "Assets managed under >95% QA quality standards",
+                pil_kicker: "Value Proposition",
+                pil_title: "Where communication strategy meets technology",
+                p1_title: "AI Adoption & Enablement",
+                p1_desc: "Designing activation programs, practical playbooks, and change management to translate Generative AI tools into everyday operational habits.",
+                p2_title: "Process Innovation",
+                p2_desc: "Bottleneck diagnostics (Lean Six Sigma), executive report automation, workflow standardization, and KPI tracking.",
+                p3_title: "Publishing & Content Strategies",
+                p3_desc: 'Editorial planning, strategic writing, omnichannel curation, and global deliverable scheduling, delivered fluently in both <strong class="text-editorial-ink font-semibold">Spanish and English</strong>.',
+                p4_title: "Communications & Communities",
+                p4_desc: "Executive storytelling, key account management, international webinar direction, and engagement of active B2B communities.",
+                p5_title: "Benchmarking & Data Quality",
+                p5_desc: "Methodological source tracking, comparative analysis matrices, information architecture, and governance of massive databases.",
+                casos_kicker: "Projects & Outcomes",
+                casos_title: "Case Studies",
+                casos_desc: "Initiatives where I united research, communication strategy, and operational optimization. Click on any card to open the full case breakdown.",
+                flt_all: "All (5)",
+                flt_ia: "AI",
+                flt_comm: "Communications",
+                flt_data: "Operations & Data",
+                flt_journ: "Journalism",
+                cs_cta: "Click to read the full case study",
+                cs1_tag: "Research & Sector Benchmarking",
+                cs1_org: "UBA · Undergraduate Thesis",
+                cs1_title: "Journalism in the Age of Artificial Intelligence",
+                cs1_desc: "This undergraduate thesis develops a critical discourse analysis incorporating multidisciplinary theoretical frameworks to examine how Argentina's media ecosystem signifies and integrates Artificial Intelligence amid tensions between automation, intellectual property, and institutional sustainability.",
+                cs1_m1_val: "191 materials",
+                cs1_m1_lbl: "Surveyed across 17 industry sources",
+                cs1_m2_val: "Python + CDA",
+                cs1_m2_lbl: "Tracking & benchmarking matrix",
+                cs2_tag: "Applied AI & Change Management",
+                cs2_title: "Global AI Adoption Leadership (AIgniters & AI Champion)",
+                cs2_desc: "Global co-coordination of the <em>AIgniters</em> initiative alongside US leads to accelerate practical Generative AI adoption across international account management teams, translating tools into everyday operational habits.",
+                cs2_m1_val: "5 countries",
+                cs2_m1_lbl: "Global reach (50+ professionals)",
+                cs2_m2_val: "Automation",
+                cs2_m2_lbl: "Executive reporting & pipeline",
+                cs3_tag: "B2B Communications & Knowledge Management",
+                cs3_title: "Omnichannel Content Ecosystem & Executive Community",
+                cs3_desc: "Transforming complex technical research across energy and industrial sectors into clear executive assets (up to 35 monthly deliverables) and end-to-end direction of an annual program of 10 international CPE/CE-accredited webinars.",
+                cs3_m1_val: "2,000+ prof.",
+                cs3_m1_lbl: "Active B2B community (~150/webinar)",
+                cs3_m2_lbl: "Sustained growth via KPI analytics",
+                cs4_tag: "Data Governance & Operations",
+                cs4_title: "Editorial Architecture & Quality (QA) in Massive Catalogs",
+                cs4_desc: "Directing editorial workflows, content governance, and quality audits for international entertainment and streaming platforms, covering nearly 100% of Latin American and US Hispanic markets.",
+                cs4_m1_val: ">95% accuracy",
+                cs4_m1_lbl: "Across ~40 million assets",
+                cs4_m2_val: "30+ editors",
+                cs4_m2_lbl: "Led across LATAM & US Hispanic",
+                cs5_tag: "Investigative Journalism & Alliances",
+                cs5_title: "Lavado Papers & Public-Interest Coverage: The Origin of My Editorial Rigor",
+                cs5_desc: 'Before leading strategies in corporate environments, I honed my craft in newsrooms and collaborative investigative projects such as <strong class="text-editorial-ink font-semibold">Lavado Papers</strong> (an alliance between <em>Lavaca/MU</em>, <em>Tiempo Argentino</em>, and <em>REDCOM</em>) and in institutional, cultural, and social features published in <em>ANCCOM (UBA)</em>.',
+                cs5_cta: "Click to view the full context and access the 6 published articles and reports",
+                exp_kicker: "Career Path",
+                exp_title: "Featured Experience",
+                exp_desc: "Professional evolution from investigative journalism and large-scale editorial data management to leading key accounts, knowledge ecosystems, and AI-driven innovation.",
+                r1_date: "Apr 2025 – May 2026",
+                r1_desc: "End-to-end management of key account commercial pipelines, direct executive reporting to partners, and cross-functional project coordination with multidisciplinary teams across 5 countries (50+ people). Global innovation lead and <em>AI Champion</em> within <em>AIgniters</em>, driving daily Generative AI adoption (ChatGPT, Claude, and Microsoft Copilot) through practical guides, internal campaigns, and automation of reporting and tracking workflows.",
+                r2_date: "Jan 2023 – Mar 2025",
+                r2_desc: "Design and execution of omnichannel communication and knowledge management strategies for global audiences across 5+ markets, translating technical research into up to 35 monthly deliverables. Built and engaged an international B2B community of 2,000+ professionals through an annual program of 10 CPE/CE-accredited webinars and strategic newsletters, achieving a ~30% lift in engagement via KPI analytics and continuous improvement (Lean Six Sigma).",
+                r3_date: "Aug 2018 – Dec 2022",
+                r3_desc: "Led editorial processes, information architecture, and content governance for international entertainment platforms, covering nearly 100% of Latin American and US Hispanic markets. Oversaw quality audits (QA >95%) across databases of approximately 40 million assets, diagnosed operational workflows, and trained teams of 30+ writers and editors.",
+                r4_date: "Aug 2017 – Aug 2018",
+                r4_desc: "Edited, categorized, and enriched editorial content tied to television programming and international audiovisual catalogs, processing up to 1,000 pieces monthly. Conducted documentary research and source validation under strict editorial standards to ensure data traceability and integrity.",
+                r5_date: "Aug 2016 – Aug 2017",
+                r5_desc: "Ingested, structured, and updated programming schedules and audiovisual catalogs for over 80 channels and streaming platforms, ensuring 100% technical accuracy and strict adherence to publishing timelines.",
+                r6_date: "Mar 2016 – Mar 2017",
+                r6_org: "ANCCOM – News Agency (UBA)",
+                r6_title: "Journalist & Staff Writer",
+                r6_desc: "Conducted journalistic research, in-depth interviews, and feature writing on society, politics, and economics for digital outlets, including participation in inter-institutional collaborative projects such as <em>Lavado Papers</em>.",
+                cred_kicker: "Academic & Technical Credentials",
+                cred_title: "Education & Certifications",
+                uba_kicker: "Undergraduate University Degree",
+                uba_uni: "University of Buenos Aires (UBA)",
+                uba_degree: "B.A. in Social Communication Sciences",
+                uba_desc: "Journalism Track. Comprehensive training in strategic communications, critical discourse analysis, information planning and management, media research, and digital culture.",
+                uba_thesis: 'Undergraduate Thesis: <span class="italic font-normal text-editorial-muted">“Journalism in the Age of Artificial Intelligence” (critical discourse analysis with multidisciplinary theoretical frameworks and Python tracking methodology).</span>',
+                cert_g1_title: "Artificial Intelligence & Governance",
+                cert_g2_title: "Processes, Projects & Communications",
+                cert_g2_list: `
+                    <li>• Lean Six Sigma White Belt Training (EY GDS)</li>
+                    <li>• Project Management (Educación IT) & Change Management</li>
+                    <li>• Business Analysis Analytical Techniques</li>
+                    <li>• Storytelling for Leaders (Skillsoft) & Community Management (ETER)</li>
+                `,
+                eco_title: "Technology Ecosystem & Languages",
+                lang_es: "Spanish",
+                lang_en: "English",
+                foot_kicker: "Next Steps",
+                foot_title: "Let’s Talk",
+                foot_desc: "If your team is looking to turn complex information into clear knowledge, optimize operational workflows, or accelerate everyday Generative AI adoption without losing its human edge, I would love to learn more about the challenge.",
+                foot_copy: "© 2026 Ramiro David Godoy · Buenos Aires, Argentina · All rights reserved.",
+                modal_skills_lbl: "Methodological Approach & Tools"
+            }
+        };
+
+        // Base de datos completa de los 5 casos de estudio para el Modal (ES / EN)
+        const caseStudiesData = {
+            es: {
+                tesis: {
+                    tag: 'Investigación y benchmarking sectorial',
+                    tagClass: 'bg-emerald-50 text-emerald-700 border border-emerald-200',
+                    org: 'UBA · Tesis de grado',
+                    title: 'El periodismo en la era de la Inteligencia Artificial',
+                    paragraphs: [
+                        'Esta investigación de grado desarrolla un análisis crítico del discurso que incorpora aportes teóricos multidisciplinarios —desde la lingüística de la enunciación y la sociología de las rutinas periodísticas hasta la economía política de plataformas— para examinar cómo el ecosistema de medios argentino significa e integra la Inteligencia Artificial frente a la tensión entre automatización, propiedad intelectual y sostenibilidad institucional.',
+                        'En el plano metodológico, estructuré un protocolo de rastreo avanzado que combinó búsqueda manual, <em>web scraping</em> en Python y análisis asistido por IA sobre un corpus exploratorio de 191 materiales provenientes de 17 fuentes sectoriales. A partir de ese universo, depuré una muestra representativa de 39 unidades —incluyendo artículos periodísticos, piezas audiovisuales e informes institucionales del sector— que fueron examinadas mediante una matriz multidimensional.',
+                        'Más allá de evidenciar la brecha entre la mirada corporativa sobre las plataformas tecnológicas y el uso pragmático de la herramienta en las redacciones, el diseño metodológico funciona como una guía transferible al <em>benchmarking</em> competitivo en distintas industrias, destacando el valor estratégico del «diferencial humano» basado en la ética, la verificación y el criterio profesional.'
+                    ],
+                    skills: ['Análisis crítico del discurso', 'Web scraping (Python)', 'Matrices de benchmarking', 'Curaduría de fuentes', 'IA aplicada a investigación'],
+                    metrics: [
+                        { value: '191 materiales', label: 'Relevados en 17 fuentes sectoriales', color: 'text-emerald-700' },
+                        { value: 'Python + ACD', label: 'Rastreo y matriz de benchmarking', color: 'text-editorial-ink' }
+                    ]
+                },
+                aigniters: {
+                    tag: 'IA aplicada y gestión del cambio',
+                    tagClass: 'bg-cobalt-50 text-cobalt-800 border border-blue-200',
+                    org: 'EY GDS · 2025 – 2026',
+                    title: 'Liderazgo en adopción global de IA (AIgniters y AI Champion)',
+                    paragraphs: [
+                        'Con el propósito de acelerar la integración práctica de la Inteligencia Artificial Generativa en equipos internacionales de gestión de cuentas con distintos niveles de madurez digital, asumí la co-coordinación global de la iniciativa <em>AIgniters</em> junto a tres referentes de Estados Unidos en el rol de <em>AI Champion</em>, trabajando para evitar que la tecnología quedara restringida a un plano meramente teórico.',
+                        'A través del diseño de campañas de comunicación interna, demostraciones en vivo y guías aplicadas a casos de uso reales, acompañé a más de 50 profesionales distribuidos en 5 países en la integración cotidiana de herramientas como ChatGPT, Claude y Microsoft Copilot. El trabajo se enfocó en optimizar la preparación de reuniones con clientes, la síntesis de minutas ejecutivas y el seguimiento de pipelines comerciales.',
+                        'Esta articulación entre narrativa pedagógica y gestión del cambio permitió superar las barreras iniciales frente a la tecnología, reduciendo significativamente los tiempos dedicados a tareas administrativas recurrentes y elevando la calidad de los reportes entregados a socios y líderes regionales.'
+                    ],
+                    skills: ['ChatGPT y Claude', 'Microsoft Copilot', 'Prompt engineering', 'Gestión del cambio', 'Automatización de reportes'],
+                    metrics: [
+                        { value: '5 países', label: 'Alcance global (+50 profesionales)', color: 'text-cobalt-800' },
+                        { value: 'Automatización', label: 'Reportes ejecutivos y pipeline', color: 'text-editorial-ink' }
+                    ]
+                },
+                b2b: {
+                    tag: 'Comunicación B2B y gestión del conocimiento',
+                    tagClass: 'bg-emerald-50 text-emerald-700 border border-emerald-200',
+                    org: 'EY GDS · 2023 – 2025',
+                    title: 'Ecosistema de contenidos omnicanal y comunidad ejecutiva',
+                    paragraphs: [
+                        'Frente a la necesidad de acercar investigaciones técnicas de alto valor en los sectores de energía y productos industriales a una audiencia ejecutiva internacional, desarrollé una estrategia de traducción editorial y gestión del conocimiento orientada a transformar documentos extensos en narrativa clara y accionable.',
+                        'Diseñé y ejecuté una arquitectura de contenidos omnicanal que produjo hasta 35 entregables mensuales, integrando boletines estratégicos B2B, resúmenes ejecutivos y repositorios curados de conocimiento. En paralelo, dirigí de punta a punta un programa internacional de 10 webinars anuales con acreditación profesional (CPE/CE), coordinando agendas, expositores especializados y difusión multicanal.',
+                        'El seguimiento continuo de indicadores clave de rendimiento permitió ajustar formatos y temáticas según el comportamiento de cada segmento, consolidando una comunidad activa de más de 2.000 profesionales (~150 asistentes promedio por sesión) y logrando un incremento sostenido de aproximadamente el 30% en el <em>engagement</em>.'
+                    ],
+                    skills: ['Estrategia de contenidos', 'Email marketing B2B', 'Webinars (CPE/CE)', 'Analítica de KPIs', 'Knowledge Management'],
+                    metrics: [
+                        { value: '+2.000 prof.', label: 'Comunidad B2B activa (~150/webinar)', color: 'text-emerald-700' },
+                        { value: '+30% engagement', label: 'Crecimiento sostenido por analítica', color: 'text-editorial-ink' }
+                    ]
+                },
+                gracenote: {
+                    tag: 'Gobernanza de datos y operaciones',
+                    tagClass: 'bg-cobalt-50 text-cobalt-800 border border-blue-200',
+                    org: 'Gracenote (Nielsen) · 2016 – 2022',
+                    title: 'Arquitectura editorial y calidad (QA) en catálogos masivos',
+                    paragraphs: [
+                        'Para asegurar la integridad editorial, consistencia taxonómica y actualización oportuna de metadatos audiovisuales en las principales plataformas de streaming y televisión de Latinoamérica y el mercado hispano de Estados Unidos, lideré el rediseño de flujos operativos y protocolos de control de calidad.',
+                        'Mediante diagnósticos profundos de arquitectura de información, identifiqué cuellos de botella en los flujos regionales de carga y validación, rediseñando manuales de estilo y protocolos de auditoría. Asimismo, capacité y supervisé a un equipo multicultural de más de 30 especialistas en criterios editoriales y cumplimiento riguroso de acuerdos de nivel de servicio (SLAs).',
+                        'Esta gestión permitió alcanzar una cobertura cercana al 100% de los mercados asignados y sostener un nivel de precisión editorial y técnica superior al 95% sobre un catálogo masivo de aproximadamente 40 millones de activos.'
+                    ],
+                    skills: ['Gobernanza de datos', 'Quality assurance (QA >95%)', 'Arquitectura de información', 'Liderazgo (+30 editores)', 'ServiceNow'],
+                    metrics: [
+                        { value: '>95% precisión', label: 'Sobre ~40 millones de activos', color: 'text-cobalt-800' },
+                        { value: '+30 editores', label: 'Liderados en LATAM y US Hispanic', color: 'text-editorial-ink' }
+                    ]
+                },
+                periodismo: {
+                    tag: 'Periodismo de investigación y alianzas',
+                    tagClass: 'bg-cobalt-50 text-cobalt-800 border border-blue-200',
+                    org: 'Lavado Papers · ANCCOM (UBA) · REDCOM',
+                    title: 'Lavado Papers y coberturas de impacto público: el origen de mi rigor editorial',
+                    paragraphs: [
+                        'Antes de liderar estrategias en entornos corporativos, consolidé mi oficio en redacciones y proyectos colaborativos de investigación. Participé en <strong>Lavado Papers</strong> (Consorcio de Periodismo de Investigación Autogestivo), una iniciativa articulada en alianza entre <em>Lavaca/MU</em>, el diario <em>Tiempo Argentino</em> y la <em>Red de Carreras de Comunicación Social (REDCOM)</em>.',
+                        'Esa experiencia temprana trabajando en red con múltiples organizaciones —sumada a mis crónicas y notas publicadas en <em>ANCCOM (Agencia de Noticias de Ciencias de la Comunicación – UBA)</em>— forjó la disciplina de verificación de fuentes, síntesis de información compleja y claridad narrativa que hoy traslado a cada proyecto corporativo y tecnológico.'
+                    ],
+                    highlightsTitle: 'Artículos e informes publicados (clic para leer en pestaña nueva)',
+                    highlights: [
+                        {
+                            title: 'Lavado Papers — Informe CPIA (Capítulo 1: Coberturas)',
+                            meta: 'PDF · Lavaca/MU, Tiempo Argentino y REDCOM (2016)',
+                            desc: 'Informe del Consorcio de Periodismo de Investigación Autogestivo sobre transparencia, flujos financieros y articulación interinstitucional.',
+                            url: 'https://anccom.sociales.uba.ar/wp-content/uploads/sites/19/2016/12/InformeCPIA-Capitulo1-Coberturas.pdf',
+                            cta: 'Ver informe PDF'
+                        },
+                        {
+                            title: '«La unidad es lo único que nos puede salvar»',
+                            meta: 'ANCCOM (UBA) · 8 de agosto de 2016',
+                            desc: 'Crónica y cobertura periodística sobre articulación sectorial, organización colectiva y coyuntura social.',
+                            url: 'https://anccom.sociales.uba.ar/2016/08/08/la-unidad-es-lo-unico-que-nos-puede-salvar/#.V-BR6TXl9nI',
+                            cta: 'Leer artículo'
+                        },
+                        {
+                            title: '«Con la música a otra parte»',
+                            meta: 'ANCCOM (UBA) · 14 de junio de 2016',
+                            desc: 'Cobertura en territorio de la asamblea y medidas colectivas del Frente de Artistas Ambulantes Organizados (FAAO).',
+                            url: 'https://anccom.sociales.uba.ar/2016/06/14/con-la-musica-a-otra-parte/#.V6D-IKLGGx0',
+                            cta: 'Leer artículo'
+                        },
+                        {
+                            title: '«Libertad de expresión, esa es la cuestión»',
+                            meta: 'ANCCOM (UBA) · 18 de mayo de 2016',
+                            desc: 'Cobertura institucional del debate organizado por la Universidad Nacional de Quilmes sobre regulación y libertad de expresión.',
+                            url: 'https://anccom.sociales.uba.ar/2016/05/18/libertad-de-expresion-esa-es-la-cuestion/#.V6D-GqLGGx0',
+                            cta: 'Leer artículo'
+                        },
+                        {
+                            title: '«Depor no TV»',
+                            meta: 'ANCCOM (UBA) · 18 de mayo de 2016',
+                            desc: 'Nota de análisis sobre políticas públicas de comunicación, medios públicos y transmisión deportiva.',
+                            url: 'https://anccom.sociales.uba.ar/2016/05/18/depor-no-tv/#.V6D-FaLGGx0',
+                            cta: 'Leer artículo'
+                        },
+                        {
+                            title: '«Sin palabras»',
+                            meta: 'ANCCOM (UBA) · 31 de marzo de 2016',
+                            desc: 'Crónica y cobertura periodística publicada en la agencia de noticias de la Facultad de Ciencias Sociales (UBA).',
+                            url: 'https://anccom.sociales.uba.ar/2016/03/31/sin-palabras/#.V6D-FaLGGx0',
+                            cta: 'Leer artículo'
+                        }
+                    ],
+                    skills: ['Periodismo de investigación', 'Verificación de fuentes', 'Crónica y narrativa', 'Trabajo colaborativo en red'],
+                    metrics: [
+                        { value: 'Lavado Papers', label: 'Alianza Lavaca/MU · Tiempo Argentino · REDCOM', color: 'text-cobalt-800' },
+                        { value: 'ANCCOM (UBA)', label: '6 publicaciones e informes enlazados', color: 'text-editorial-ink' }
+                    ]
+                }
+            },
+            en: {
+                tesis: {
+                    tag: 'Research & Sector Benchmarking',
+                    tagClass: 'bg-emerald-50 text-emerald-700 border border-emerald-200',
+                    org: 'UBA · Undergraduate Thesis',
+                    title: 'Journalism in the Age of Artificial Intelligence',
+                    paragraphs: [
+                        'This undergraduate thesis develops a critical discourse analysis incorporating multidisciplinary theoretical frameworks—from enunciation linguistics and the sociology of newsroom routines to the political economy of platforms—to examine how Argentina’s media ecosystem signifies and integrates Artificial Intelligence amid tensions between automation, intellectual property, and institutional sustainability.',
+                        'Methodologically, I structured an advanced tracking protocol combining manual search, Python <em>web scraping</em>, and AI-assisted analysis across an exploratory corpus of 191 materials from 17 industry sources. From that universe, I distilled a representative sample of 39 units—including news articles, audiovisual pieces, and institutional sector reports—examined through a multidimensional matrix.',
+                        'Beyond highlighting the gap between corporate narratives on tech platforms and pragmatic day-to-day tool usage in newsrooms, this methodological design serves as a transferable guide for competitive benchmarking across industries, underscoring the strategic value of the “human edge” rooted in ethics, verification, and professional judgment.'
+                    ],
+                    skills: ['Critical discourse analysis', 'Web scraping (Python)', 'Benchmarking matrices', 'Source curation', 'AI-assisted research'],
+                    metrics: [
+                        { value: '191 materials', label: 'Surveyed across 17 industry sources', color: 'text-emerald-700' },
+                        { value: 'Python + CDA', label: 'Tracking & benchmarking matrix', color: 'text-editorial-ink' }
+                    ]
+                },
+                aigniters: {
+                    tag: 'Applied AI & Change Management',
+                    tagClass: 'bg-cobalt-50 text-cobalt-800 border border-blue-200',
+                    org: 'EY GDS · 2025 – 2026',
+                    title: 'Global AI Adoption Leadership (AIgniters & AI Champion)',
+                    paragraphs: [
+                        'To accelerate the practical integration of Generative Artificial Intelligence across international account management teams with varying levels of digital maturity, I assumed global co-coordination of the <em>AIgniters</em> initiative alongside three US leads in the role of <em>AI Champion</em>, ensuring the technology moved beyond a purely theoretical plane.',
+                        'Through internal communication campaigns, live demos, and guides tailored to real use cases, I supported 50+ professionals distributed across 5 countries in embedding tools such as ChatGPT, Claude, and Microsoft Copilot into daily routines. Efforts focused on streamlining client meeting preparation, executive minutes synthesis, and commercial pipeline tracking.',
+                        'This blend of pedagogical storytelling and change management helped overcome initial adoption friction, significantly reducing time spent on recurring administrative tasks and elevating the quality of reports delivered to partners and regional leaders.'
+                    ],
+                    skills: ['ChatGPT & Claude', 'Microsoft Copilot', 'Prompt engineering', 'Change management', 'Report automation'],
+                    metrics: [
+                        { value: '5 countries', label: 'Global reach (50+ professionals)', color: 'text-cobalt-800' },
+                        { value: 'Automation', label: 'Executive reporting & pipeline', color: 'text-editorial-ink' }
+                    ]
+                },
+                b2b: {
+                    tag: 'B2B Communications & Knowledge Management',
+                    tagClass: 'bg-emerald-50 text-emerald-700 border border-emerald-200',
+                    org: 'EY GDS · 2023 – 2025',
+                    title: 'Omnichannel Content Ecosystem & Executive Community',
+                    paragraphs: [
+                        'Faced with the need to bring high-value technical research across the energy and industrial products sectors to an international executive audience, I developed an editorial translation and knowledge management strategy designed to turn dense documents into clear, actionable narratives.',
+                        'I designed and executed an omnichannel content architecture producing up to 35 monthly deliverables, integrating strategic B2B newsletters, executive summaries, and curated knowledge repositories. In parallel, I managed end-to-end an international program of 10 annual CPE/CE-accredited webinars, coordinating agendas, subject-matter speakers, and multichannel outreach.',
+                        'Continuous monitoring of key performance indicators enabled format and topic optimization by audience segment, consolidating an active community of 2,000+ professionals (~150 average attendees per session) and achieving a sustained ~30% lift in engagement.'
+                    ],
+                    skills: ['Content strategy', 'B2B email marketing', 'Webinars (CPE/CE)', 'KPI analytics', 'Knowledge Management'],
+                    metrics: [
+                        { value: '2,000+ prof.', label: 'Active B2B community (~150/webinar)', color: 'text-emerald-700' },
+                        { value: '+30% engagement', label: 'Sustained growth via KPI analytics', color: 'text-editorial-ink' }
+                    ]
+                },
+                gracenote: {
+                    tag: 'Data Governance & Operations',
+                    tagClass: 'bg-cobalt-50 text-cobalt-800 border border-blue-200',
+                    org: 'Gracenote (Nielsen) · 2016 – 2022',
+                    title: 'Editorial Architecture & Quality (QA) in Massive Catalogs',
+                    paragraphs: [
+                        'To ensure editorial integrity, taxonomic consistency, and timely updates of audiovisual metadata across major streaming and television platforms in Latin America and the US Hispanic market, I led the redesign of operational workflows and quality assurance protocols.',
+                        'Through deep information architecture diagnostics, I identified bottlenecks in regional ingestion and validation pipelines, revamping style guides and audit protocols. I also trained and supervised a multicultural team of 30+ specialists on editorial standards and strict Service Level Agreement (SLA) compliance.',
+                        'This leadership achieved nearly 100% coverage across assigned markets and sustained an editorial and technical accuracy rate above 95% across a massive catalog of approximately 40 million assets.'
+                    ],
+                    skills: ['Data governance', 'Quality assurance (QA >95%)', 'Information architecture', 'Leadership (30+ editors)', 'ServiceNow'],
+                    metrics: [
+                        { value: '>95% accuracy', label: 'Across ~40 million assets', color: 'text-cobalt-800' },
+                        { value: '30+ editors', label: 'Led across LATAM & US Hispanic', color: 'text-editorial-ink' }
+                    ]
+                },
+                periodismo: {
+                    tag: 'Investigative Journalism & Alliances',
+                    tagClass: 'bg-cobalt-50 text-cobalt-800 border border-blue-200',
+                    org: 'Lavado Papers · ANCCOM (UBA) · REDCOM',
+                    title: 'Lavado Papers & Public-Interest Coverage: The Origin of My Editorial Rigor',
+                    paragraphs: [
+                        'Before leading strategies in corporate environments, I honed my craft in newsrooms and collaborative investigative projects. I participated in <strong>Lavado Papers</strong> (Self-Managed Investigative Journalism Consortium), an initiative built in alliance between <em>Lavaca/MU</em>, the newspaper <em>Tiempo Argentino</em>, and the <em>Network of Social Communication Schools (REDCOM)</em>.',
+                        'That early experience working across networked organizations—alongside my features and reports published in <em>ANCCOM (Social Communication News Agency – UBA)</em>—forged the discipline of source verification, synthesis of complex information, and narrative clarity that I bring to every corporate and technology project today.'
+                    ],
+                    highlightsTitle: 'Published articles and reports (click to read in a new tab)',
+                    highlights: [
+                        {
+                            title: 'Lavado Papers — CPIA Report (Chapter 1: Coverage)',
+                            meta: 'PDF · Lavaca/MU, Tiempo Argentino & REDCOM (2016)',
+                            desc: 'Report by the Self-Managed Investigative Journalism Consortium on transparency, financial flows, and inter-institutional collaboration.',
+                            url: 'https://anccom.sociales.uba.ar/wp-content/uploads/sites/19/2016/12/InformeCPIA-Capitulo1-Coberturas.pdf',
+                            cta: 'View PDF report'
+                        },
+                        {
+                            title: '“La unidad es lo único que nos puede salvar”',
+                            meta: 'ANCCOM (UBA) · August 8, 2016',
+                            desc: 'Feature and journalistic coverage on sector articulation, collective organization, and social context.',
+                            url: 'https://anccom.sociales.uba.ar/2016/08/08/la-unidad-es-lo-unico-que-nos-puede-salvar/#.V-BR6TXl9nI',
+                            cta: 'Read article'
+                        },
+                        {
+                            title: '“Con la música a otra parte”',
+                            meta: 'ANCCOM (UBA) · June 14, 2016',
+                            desc: 'On-the-ground coverage of the assembly and collective actions of the Frente de Artistas Ambulantes Organizados (FAAO).',
+                            url: 'https://anccom.sociales.uba.ar/2016/06/14/con-la-musica-a-otra-parte/#.V6D-IKLGGx0',
+                            cta: 'Read article'
+                        },
+                        {
+                            title: '“Libertad de expresión, esa es la cuestión”',
+                            meta: 'ANCCOM (UBA) · May 18, 2016',
+                            desc: 'Institutional coverage of the debate organized by the National University of Quilmes on media regulation and freedom of expression.',
+                            url: 'https://anccom.sociales.uba.ar/2016/05/18/libertad-de-expresion-esa-es-la-cuestion/#.V6D-GqLGGx0',
+                            cta: 'Read article'
+                        },
+                        {
+                            title: '“Depor no TV”',
+                            meta: 'ANCCOM (UBA) · May 18, 2016',
+                            desc: 'Analytical piece on public communication policies, public media, and sports broadcasting.',
+                            url: 'https://anccom.sociales.uba.ar/2016/05/18/depor-no-tv/#.V6D-FaLGGx0',
+                            cta: 'Read article'
+                        },
+                        {
+                            title: '“Sin palabras”',
+                            meta: 'ANCCOM (UBA) · March 31, 2016',
+                            desc: 'Feature and journalistic coverage published in the news agency of the Faculty of Social Sciences (UBA).',
+                            url: 'https://anccom.sociales.uba.ar/2016/03/31/sin-palabras/#.V6D-FaLGGx0',
+                            cta: 'Read article'
+                        }
+                    ],
+                    skills: ['Investigative journalism', 'Source verification', 'Feature writing & narrative', 'Networked collaboration'],
+                    metrics: [
+                        { value: 'Lavado Papers', label: 'Lavaca/MU · Tiempo Argentino · REDCOM Alliance', color: 'text-cobalt-800' },
+                        { value: 'ANCCOM (UBA)', label: '6 linked publications & reports', color: 'text-editorial-ink' }
+                    ]
+                }
+            }
+        };
+
+        // Cambiar idioma (ES | EN)
+        function setLanguage(lang) {
+            if (lang !== 'es' && lang !== 'en') return;
+            currentLang = lang;
+            document.documentElement.lang = lang;
+
+            const dict = uiTranslations[lang];
+            document.title = dict.page_title;
+
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (dict[key]) {
+                    el.innerHTML = dict[key];
+                }
+            });
+
+            // Actualizar estado visual del botón ES | EN en desktop y mobile
+            const esBtns = [document.getElementById('btn-lang-es'), document.getElementById('btn-lang-es-mobile')];
+            const enBtns = [document.getElementById('btn-lang-en'), document.getElementById('btn-lang-en-mobile')];
+
+            if (lang === 'es') {
+                esBtns.forEach(b => { b.classList.add('lang-active'); b.classList.remove('lang-inactive'); });
+                enBtns.forEach(b => { b.classList.add('lang-inactive'); b.classList.remove('lang-active'); });
+            } else {
+                enBtns.forEach(b => { b.classList.add('lang-active'); b.classList.remove('lang-inactive'); });
+                esBtns.forEach(b => { b.classList.add('lang-inactive'); b.classList.remove('lang-active'); });
+            }
+
+            // Si hay un modal abierto, re-renderizarlo en el idioma seleccionado
+            if (activeCaseId) {
+                openCaseModal(activeCaseId);
+            }
+        }
+
+        // Abrir modal
+        function openCaseModal(id) {
+            activeCaseId = id;
+            const data = caseStudiesData[currentLang][id];
+            if (!data) return;
+
+            const tagEl = document.getElementById('modal-tag');
+            tagEl.textContent = data.tag;
+            tagEl.className = 'px-3 py-1 rounded-full text-xs font-bold ' + data.tagClass;
+
+            document.getElementById('modal-org').textContent = data.org;
+            document.getElementById('modal-title').textContent = data.title;
+
+            // Párrafos narrativos
+            const paragraphsEl = document.getElementById('modal-paragraphs');
+            paragraphsEl.innerHTML = data.paragraphs.map(p => `<p>${p}</p>`).join('');
+
+            // Bloques destacados con enlaces directos (para Periodismo)
+            const highlightsEl = document.getElementById('modal-highlights');
+            if (data.highlights && data.highlights.length > 0) {
+                highlightsEl.innerHTML = `
+                    <div class="mt-6 pt-5 border-t border-editorial-border">
+                        <span class="block text-xs font-bold uppercase tracking-wider text-editorial-ink mb-3">${data.highlightsTitle}</span>
+                        <div class="grid sm:grid-cols-2 gap-3.5">
+                            ${data.highlights.map(item => `
+                                <a href="${item.url}" target="_blank" rel="noopener noreferrer" class="group block bg-slate-50 hover:bg-cobalt-50/70 border border-slate-200 hover:border-cobalt-800 rounded-xl p-4 transition">
+                                    <span class="block text-[11px] font-semibold text-emerald-700 mb-1">${item.meta}</span>
+                                    <p class="font-bold text-sm text-editorial-ink group-hover:text-cobalt-800 transition leading-snug">${item.title}</p>
+                                    <p class="text-xs text-editorial-muted mt-1.5 leading-relaxed">${item.desc}</p>
+                                    <span class="inline-flex items-center gap-1 text-xs font-bold text-cobalt-800 mt-2.5">
+                                        ${item.cta}
+                                        <svg class="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                                    </span>
+                                </a>
+                            `).join('')}
+                        </div>
+                    </div>
+                `;
+            } else {
+                highlightsEl.innerHTML = '';
+            }
+
+            // Skills / herramientas
+            const skillsEl = document.getElementById('modal-skills');
+            skillsEl.innerHTML = data.skills.map(s =>
+                `<span class="px-3 py-1 rounded-md bg-slate-100 border border-slate-200 text-xs font-semibold text-editorial-ink">${s}</span>`
+            ).join('');
+
+            // Métricas
+            const metricsEl = document.getElementById('modal-metrics');
+            metricsEl.innerHTML = data.metrics.map(m => `
+                <div>
+                    <span class="block font-serif text-lg font-bold ${m.color}">${m.value}</span>
+                    <span class="text-xs text-editorial-muted">${m.label}</span>
+                </div>
+            `).join('');
+
+            const modal = document.getElementById('case-modal');
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Cerrar modal
+        function closeCaseModal() {
+            activeCaseId = null;
+            const modal = document.getElementById('case-modal');
+            modal.classList.add('hidden');
+            document.body.style.overflow = '';
+        }
+
+        // Cerrar al hacer clic fuera de la ventana blanca
+        function closeModalOnBackdrop(event) {
+            if (event.target.id === 'case-modal') {
+                closeCaseModal();
+            }
+        }
+
+        // Cerrar con tecla Escape
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeCaseModal();
+            }
+        });
+
+        // Accesibilidad con teclado en las tarjetas
+        function handleCardKey(event, id) {
+            if (event.key === 'Enter' || event.key === ' ') {
+                event.preventDefault();
+                openCaseModal(id);
+            }
+        }
+
+        // Soporte para abrir directo en inglés vía ?lang=en
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('lang') === 'en') {
+            setLanguage('en');
+        }
+    </script>
+
+</body>
+</html>
